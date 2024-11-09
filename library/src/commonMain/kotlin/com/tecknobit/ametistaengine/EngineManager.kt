@@ -1,5 +1,6 @@
 package com.tecknobit.ametistaengine
 
+import com.tecknobit.mole.KMole
 import kotlinx.io.buffered
 import kotlinx.io.files.Path
 import kotlinx.io.files.SystemFileSystem
@@ -19,6 +20,15 @@ class EngineManager private constructor() {
     }
 
     private lateinit var configuration: EngineConfiguration
+
+    val host: String
+        get() = configuration.host
+
+    val serverSecret: String
+        get() = configuration.serverSecret
+
+    val applicationId: String
+        get() = configuration.applicationId
 
     fun init(
         configPath: String
@@ -47,10 +57,13 @@ class EngineManager private constructor() {
         configData: ByteArray
     ) {
         configuration = Json.decodeFromString(configData.decodeToString())
+        val kMole = KMole.kMole
+        println(kMole.uniqueIdentifier)
+        println(kMole.brand)
+        println(kMole.model)
+        println(kMole.os)
+        println(kMole.osVersion)
     }
-
-    val host: String
-        get() = configuration.host
 
     @Serializable
     internal data class EngineConfiguration(

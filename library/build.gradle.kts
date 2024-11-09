@@ -41,16 +41,17 @@ kotlin {
         nodejs()
         d8()
     }
-    js(IR) {
-        browser()
-        nodejs()
-    }
     sourceSets {
         val commonMain by getting {
             resources.srcDirs("src/commonMain/resources")
             dependencies {
                 implementation(libs.kotlinx.io.core)
                 implementation(libs.kotlinx.serialization.json)
+            }
+        }
+        val jvmMain by getting {
+            dependencies {
+                implementation("com.github.oshi:oshi-core:6.6.5")
             }
         }
     }
