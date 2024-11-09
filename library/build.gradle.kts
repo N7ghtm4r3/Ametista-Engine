@@ -42,6 +42,11 @@ kotlin {
         d8()
     }
     sourceSets {
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.apiManager)
+            }
+        }
         val commonMain by getting {
             resources.srcDirs("src/commonMain/resources")
             dependencies {
@@ -51,7 +56,7 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
-                implementation("com.github.oshi:oshi-core:6.6.5")
+                implementation(libs.oshi.core)
             }
         }
     }

@@ -13,6 +13,7 @@ class EngineManager private constructor() {
 
     companion object {
 
+        // TODO: WARN ABOUT HIDE THE FILE FOR EXAMPLE IN THE COMMIT OR PUBLIC PUBLISHING 
         const val FILES_AMETISTA_CONFIG_PATHNAME = "files/ametista.config"
 
         val engineManager: EngineManager by lazy { EngineManager() }
@@ -58,11 +59,11 @@ class EngineManager private constructor() {
     ) {
         configuration = Json.decodeFromString(configData.decodeToString())
         val kMole = KMole.kMole
-        println(kMole.uniqueIdentifier)
-        println(kMole.brand)
-        println(kMole.model)
-        println(kMole.os)
-        println(kMole.osVersion)
+        println("id: " + kMole.uniqueIdentifier)
+        println("brand: " + kMole.brand)
+        println("model: " + kMole.model)
+        println("os: " + kMole.os)
+        println("os_version: " + kMole.osVersion)
     }
 
     @Serializable
