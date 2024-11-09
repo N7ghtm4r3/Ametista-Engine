@@ -1,7 +1,5 @@
 package com.tecknobit.ametistaengine
 
-import com.tecknobit.ametistaengine.utils.EngineManager
-
 class PlatformConnector {
 
     enum class Platform {
