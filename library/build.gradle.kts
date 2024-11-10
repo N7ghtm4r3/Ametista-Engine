@@ -37,9 +37,7 @@ kotlin {
     iosSimulatorArm64()
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        browser()
-        nodejs()
-        d8()
+        binaries.executable()
     }
     sourceSets {
         val androidMain by getting {
@@ -59,6 +57,11 @@ kotlin {
                 implementation(libs.oshi.core)
             }
         }
+        val wasmJsMain by getting {
+            dependencies {
+            }
+        }
+
     }
     jvmToolchain(18)
 }

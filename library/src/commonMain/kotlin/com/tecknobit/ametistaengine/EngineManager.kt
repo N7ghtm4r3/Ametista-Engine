@@ -9,7 +9,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
-class EngineManager private constructor() {
+open class EngineManager private constructor() {
 
     companion object {
 
