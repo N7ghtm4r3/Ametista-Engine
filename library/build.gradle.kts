@@ -53,13 +53,13 @@ kotlin {
                 implementation(libs.kotlinx.io.core)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.ktor.client.core)
-                implementation(libs.ktor.client.core)
                 implementation(libs.kotlinx.coroutines.core)
             }
         }
         val jvmMain by getting {
             dependencies {
                 implementation(libs.oshi.core)
+                implementation(libs.ktor.client.apache5)
             }
         }
         val iosX64Main by getting

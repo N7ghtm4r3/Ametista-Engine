@@ -4,6 +4,7 @@ import com.tecknobit.ametistaengine.deviceinfo.DeviceInfo
 import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.PLATFORM_KEY
 import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.SERVER_SECRET_KEY
 import com.tecknobit.ametistaengine.utils.EngineConfiguration.Platform
+import com.tecknobit.ametistaengine.utils.EngineConfiguration.Platform.ANDROID
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -31,6 +32,14 @@ class EngineManager private constructor(
             )
         }
 
+        private const val ENDPOINT_URL = "/api/v1/applications/"
+
+        private const val ANDROID_LOCALHOST_VALUE = "10.0.2.2"
+
+        private const val LOCALHOST_VALUE = "localhost"
+
+        private const val LOCALHOST_ADDRESS_VALUE = "127.0.0.1"
+
     }
 
     private val deviceInfo: DeviceInfo = DeviceInfo.deviceInfo
@@ -44,6 +53,8 @@ class EngineManager private constructor(
     private lateinit var applicationId: String
 
     private var configurationLoaded: Boolean = false
+
+    private lateinit var requestBuilder: HttpRequestBuilder.() -> Unit
 
     fun init(
         configPath: String
@@ -74,14 +85,28 @@ class EngineManager private constructor(
         try {
             val configuration: EngineConfiguration = Json.decodeFromString(configData.decodeToString())
             host = configuration.host
+            if (platform == ANDROID)
+                formatHostForAndroid()
             serverSecret = configuration.serverSecret
             applicationId = configuration.applicationId
             configurationLoaded = isValidConfiguration()
             if (!configurationLoaded)
                 throwInvalidConfiguration()
+            requestBuilder = {
+                parameter(PLATFORM_KEY, platform.name)
+                headers {
+                    append(SERVER_SECRET_KEY, serverSecret)
+                }
+            }
         } catch (e: Exception) {
             throwInvalidConfiguration()
         }
+    }
+
+    private fun formatHostForAndroid() {
+        host = host
+            .replace(LOCALHOST_VALUE, ANDROID_LOCALHOST_VALUE)
+            .replace(LOCALHOST_ADDRESS_VALUE, ANDROID_LOCALHOST_VALUE)
     }
 
     private fun isValidConfiguration(): Boolean {
@@ -98,13 +123,10 @@ class EngineManager private constructor(
         MainScope().launch {
             async {
                 val request = ktorClient.put(
-                    urlString = "$host/$applicationId",
-                ) {
-                    parameter(PLATFORM_KEY, platform.name)
-                    headers {
-                        append(SERVER_SECRET_KEY, serverSecret)
-                    }
-                }
+                    urlString = "$host$ENDPOINT_URL$applicationId",
+                    block = requestBuilder
+                )
+                // TODO: LOG CORRECTLY AND PRETTY THE RESPONSE
                 println(request.bodyAsText())
             }.await()
         }
