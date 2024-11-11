@@ -7,6 +7,7 @@ android-minSdk = "24"
 android-compileSdk = "34"
 kotlinxIoCore = "0.5.4"
 kotlinxSerializationJson = "1.7.3"
+napier = "2.7.1"
 oshiCore = "6.6.5"
 ktor = "3.0.1"
 coroutines = "1.9.0"
@@ -22,6 +23,7 @@ ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "kto
 apiManager = { module = "com.github.N7ghtm4r3:APIManager", version.ref = "apiManager" }
 kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinxIoCore" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 oshi-core = { module = "com.github.oshi:oshi-core", version.ref = "oshiCore" }
 
 [plugins]

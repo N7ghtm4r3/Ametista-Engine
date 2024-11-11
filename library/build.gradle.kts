@@ -48,12 +48,12 @@ kotlin {
             }
         }
         val commonMain by getting {
-            resources.srcDirs("src/commonMain/resources")
             dependencies {
                 implementation(libs.kotlinx.io.core)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.ktor.client.core)
                 implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.napier)
             }
         }
         val jvmMain by getting {
