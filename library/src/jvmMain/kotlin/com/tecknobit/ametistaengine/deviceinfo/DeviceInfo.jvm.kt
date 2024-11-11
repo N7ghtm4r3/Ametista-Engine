@@ -1,13 +1,13 @@
-package com.tecknobit.mole
+package com.tecknobit.ametistaengine.deviceinfo
 
 import oshi.SystemInfo
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-actual class KMole private actual constructor() {
+actual class DeviceInfo private actual constructor() {
 
     actual companion object {
 
-        actual val kMole: KMole by lazy { KMole() }
+        actual val deviceInfo: DeviceInfo by lazy { DeviceInfo() }
 
         private const val TO_BE_FILLED_BY_O_E_M = "To Be Filled By O.E.M."
 

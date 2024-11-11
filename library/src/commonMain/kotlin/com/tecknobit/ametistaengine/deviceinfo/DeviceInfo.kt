@@ -1,11 +1,11 @@
-package com.tecknobit.mole
+package com.tecknobit.ametistaengine.deviceinfo
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-expect class KMole private constructor() {
+expect class DeviceInfo private constructor() {
 
     companion object {
 
-        val kMole: KMole
+        val deviceInfo: DeviceInfo
 
     }
 

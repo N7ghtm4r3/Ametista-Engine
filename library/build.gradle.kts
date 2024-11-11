@@ -43,6 +43,8 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.apiManager)
+                implementation(libs.ktor.client.okhttp)
+                implementation(libs.kotlinx.coroutines.android)
             }
         }
         val commonMain by getting {
@@ -50,6 +52,9 @@ kotlin {
             dependencies {
                 implementation(libs.kotlinx.io.core)
                 implementation(libs.kotlinx.serialization.json)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.core)
+                implementation(libs.kotlinx.coroutines.core)
             }
         }
         val jvmMain by getting {
@@ -57,11 +62,23 @@ kotlin {
                 implementation(libs.oshi.core)
             }
         }
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                implementation(libs.kdeviceinfo)
+                implementation(libs.ktor.client.darwin)
+            }
+        }
         val wasmJsMain by getting {
             dependencies {
             }
         }
-
     }
     jvmToolchain(18)
 }

@@ -1,4 +1,4 @@
-package com.tecknobit.mole
+package com.tecknobit.ametistaengine.deviceinfo
 
 import android.os.Build
 import android.os.Build.VERSION.SDK_INT
@@ -7,11 +7,11 @@ import com.tecknobit.apimanager.apis.APIRequest
 import com.tecknobit.apimanager.apis.APIRequest.SHA1_ALGORITHM
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-actual class KMole {
+actual class DeviceInfo {
 
     actual companion object {
 
-        actual val kMole by lazy { KMole() }
+        actual val deviceInfo by lazy { DeviceInfo() }
 
         private const val BASE = "Base"
 
