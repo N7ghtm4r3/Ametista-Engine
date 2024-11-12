@@ -18,7 +18,15 @@ data class EngineConfiguration(
 
         const val APPLICATION_IDENTIFIER_KEY = "application_id"
 
+        const val APP_VERSION_KEY = "app_version"
+
+        const val PERFORMANCE_ANALYTIC_TYPE_KEY = "performance_analytic_type"
+
         const val PLATFORM_KEY = "platform"
+
+        const val LAUNCH_TIME_KEY = "launch_time"
+
+        const val PERFORMANCE_ANALYTICS_ENDPOINT = "/performance_analytics"
 
     }
 
@@ -31,6 +39,18 @@ data class EngineConfiguration(
         DESKTOP,
 
         WEB
+
+    }
+
+    enum class PerformanceAnalyticType {
+
+        LAUNCH_TIME,
+
+        NETWORK_REQUESTS,
+
+        TOTAL_ISSUES,
+
+        ISSUES_PER_SESSION
 
     }
 

@@ -5,6 +5,7 @@ kdeviceinfo = "0.0.7"
 kotlin = "2.0.20"
 android-minSdk = "24"
 android-compileSdk = "34"
+kotlinxDatetime = "0.6.1"
 kotlinxIoCore = "0.5.4"
 kotlinxSerializationJson = "1.7.3"
 napier = "2.7.1"
@@ -16,6 +17,7 @@ coroutines = "1.9.0"
 kdeviceinfo = { module = "io.github.swapnil-musale:KDeviceInfo", version.ref = "kdeviceinfo" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
 ktor-client-apache5 = { module = "io.ktor:ktor-client-apache5", version.ref = "ktor" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }

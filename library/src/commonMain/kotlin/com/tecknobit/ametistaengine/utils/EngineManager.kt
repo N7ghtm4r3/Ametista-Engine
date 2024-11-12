@@ -1,8 +1,13 @@
 package com.tecknobit.ametistaengine.utils
 
 import com.tecknobit.ametistaengine.deviceinfo.DeviceInfo
+import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.APP_VERSION_KEY
+import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.LAUNCH_TIME_KEY
+import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.PERFORMANCE_ANALYTICS_ENDPOINT
+import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.PERFORMANCE_ANALYTIC_TYPE_KEY
 import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.PLATFORM_KEY
 import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.SERVER_SECRET_KEY
+import com.tecknobit.ametistaengine.utils.EngineConfiguration.PerformanceAnalyticType.LAUNCH_TIME
 import com.tecknobit.ametistaengine.utils.EngineConfiguration.Platform
 import com.tecknobit.ametistaengine.utils.EngineConfiguration.Platform.ANDROID
 import io.github.aakira.napier.DebugAntilog
@@ -10,16 +15,16 @@ import io.github.aakira.napier.Napier
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import io.ktor.http.*
 import io.ktor.http.HttpStatusCode.Companion.OK
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import kotlinx.datetime.Clock
 import kotlinx.io.buffered
 import kotlinx.io.files.Path
 import kotlinx.io.files.SystemFileSystem
 import kotlinx.io.readByteArray
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.*
 
 class EngineManager private constructor(
     private val platform: Platform
@@ -68,6 +73,9 @@ class EngineManager private constructor(
 
     private var loggingEnabled: Boolean = false
 
+    private var initializationTimestamp: Long = 0
+
+    // TODO: ADD THE POSSIBILITY TO FLAG IF THE CONFIGURATION IS IN DEBUG_MODE TO AVOID SEND OF STATS AND ISSUES 
     fun init(
         configPath: String,
         loggingEnabled: Boolean = false
@@ -101,15 +109,16 @@ class EngineManager private constructor(
             loadConfiguration(
                 configData = configData
             )
+            setLogging(
+                enabled = loggingEnabled
+            )
             requestBuilder = {
                 parameter(PLATFORM_KEY, platform.name)
                 headers {
                     append(SERVER_SECRET_KEY, serverSecret)
                 }
             }
-            setLogging(
-                enabled = loggingEnabled
-            )
+            initializationTimestamp = Clock.System.now().toEpochMilliseconds()
         } catch (e: Exception) {
             throwInvalidConfiguration()
         }
@@ -154,17 +163,26 @@ class EngineManager private constructor(
 
     fun connectPlatform() {
         sendRequest(
-            request = {
-                ktorClient.put(
-                    urlString = "$host$ENDPOINT_URL$applicationId",
-                    block = requestBuilder
-                )
-            }
+            method = HttpMethod.Put,
+            requestUrl = "$host$ENDPOINT_URL$applicationId"
         )
     }
 
     fun noticeAppLaunch() {
-
+        // TODO: TO USE THE REAL VALUE
+        val appVersion = "1.0.0"
+        val launchTime = Clock.System.now().toEpochMilliseconds() - initializationTimestamp
+        sendRequest(
+            method = HttpMethod.Put,
+            requestUrl = "$host$ENDPOINT_URL$applicationId$PERFORMANCE_ANALYTICS_ENDPOINT",
+            parameters = mapOf(
+                APP_VERSION_KEY to appVersion,
+                PERFORMANCE_ANALYTIC_TYPE_KEY to LAUNCH_TIME
+            ),
+            payload = buildJsonObject {
+                put(LAUNCH_TIME_KEY, launchTime)
+            }
+        )
     }
 
     fun noticeNetworkRequest() {
@@ -176,24 +194,56 @@ class EngineManager private constructor(
     }
 
     private fun sendRequest(
-        request: suspend () -> HttpResponse
+        method: HttpMethod,
+        requestUrl: String,
+        parameters: Map<String, Any> = emptyMap(),
+        payload: JsonObject? = null
     ) {
         checkConfigurationValidity()
         MainScope().launch {
-            val response = request.invoke()
-            if (loggingEnabled) {
-                val responseText = response.bodyAsText()
-                if (response.status == OK) {
-                    val jResponse = Json.parseToJsonElement(responseText).jsonObject
-                    val status = jResponse[STATUS_KEY]!!.jsonPrimitive.content
-                    val data = jResponse[RESPONSE_KEY]!!.jsonPrimitive.content
-                    if (status == REQUEST_FAILED)
-                        Napier.e(data)
-                    else
-                        Napier.i(data)
-                } else
-                    Napier.e(response.status.description)
+            val response = ktorClient.request(
+                urlString = requestUrl
+            ) {
+                this.method = method
+                url {
+                    parameters {
+                        parameter(PLATFORM_KEY, platform)
+                        parameters.entries.forEach { parameter ->
+                            parameter(parameter.key, parameter.value)
+                        }
+                    }
+                    headers {
+                        append(SERVER_SECRET_KEY, serverSecret)
+                        payload?.let {
+                            append(HttpHeaders.ContentType, ContentType.Application.Json)
+                        }
+                    }
+                    payload?.let { payload ->
+                        setBody(payload.toString())
+                    }
+                }
             }
+            execRequest(
+                response = response
+            )
+        }
+    }
+
+    private suspend fun execRequest(
+        response: HttpResponse
+    ) {
+        if (loggingEnabled) {
+            val responseText = response.bodyAsText()
+            if (response.status == OK) {
+                val jResponse = Json.parseToJsonElement(responseText).jsonObject
+                val status = jResponse[STATUS_KEY]!!.jsonPrimitive.content
+                val data = jResponse[RESPONSE_KEY]!!.jsonPrimitive.content
+                if (status == REQUEST_FAILED)
+                    Napier.e(data)
+                else
+                    Napier.i(data)
+            } else
+                Napier.e(response.status.description)
         }
     }
 

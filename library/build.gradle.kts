@@ -54,6 +54,7 @@ kotlin {
                 implementation(libs.ktor.client.core)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.napier)
+                implementation(libs.kotlinx.datetime)
             }
         }
         val jvmMain by getting {
