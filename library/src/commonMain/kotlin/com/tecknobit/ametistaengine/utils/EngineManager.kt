@@ -1,13 +1,19 @@
 package com.tecknobit.ametistaengine.utils
 
 import com.tecknobit.ametistaengine.deviceinfo.DeviceInfo
+import com.tecknobit.ametistaengine.deviceinfo.DeviceInfo.Companion.DEVICE_KEY
+import com.tecknobit.ametistaengine.deviceinfo.provideDeviceInfo
 import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.APP_VERSION_KEY
+import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.ENDPOINT_URL
+import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.ISSUES_ENDPOINT
+import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.ISSUE_KEY
 import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.LAUNCH_TIME_KEY
 import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.PERFORMANCE_ANALYTICS_ENDPOINT
 import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.PERFORMANCE_ANALYTIC_TYPE_KEY
 import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.PLATFORM_KEY
 import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.SERVER_SECRET_KEY
 import com.tecknobit.ametistaengine.utils.EngineConfiguration.PerformanceAnalyticType.LAUNCH_TIME
+import com.tecknobit.ametistaengine.utils.EngineConfiguration.PerformanceAnalyticType.NETWORK_REQUESTS
 import com.tecknobit.ametistaengine.utils.EngineConfiguration.Platform
 import com.tecknobit.ametistaengine.utils.EngineConfiguration.Platform.ANDROID
 import io.github.aakira.napier.DebugAntilog
@@ -41,8 +47,6 @@ class EngineManager private constructor(
             )
         }
 
-        private const val ENDPOINT_URL = "/api/v1/applications/"
-
         private const val ANDROID_LOCALHOST_VALUE = "10.0.2.2"
 
         private const val LOCALHOST_VALUE = "localhost"
@@ -57,7 +61,7 @@ class EngineManager private constructor(
 
     }
 
-    private val deviceInfo: DeviceInfo = DeviceInfo.deviceInfo
+    private val deviceInfo: DeviceInfo = provideDeviceInfo()
 
     private val ktorClient = HttpClient()
 
@@ -168,7 +172,7 @@ class EngineManager private constructor(
         )
     }
 
-    fun noticeAppLaunch() {
+    fun notifyAppLaunch() {
         // TODO: TO USE THE REAL VALUE
         val appVersion = "1.0.0"
         val launchTime = Clock.System.now().toEpochMilliseconds() - initializationTimestamp
@@ -185,12 +189,36 @@ class EngineManager private constructor(
         )
     }
 
-    fun noticeNetworkRequest() {
-
+    fun notifyNetworkRequest() {
+        // TODO: TO USE THE REAL VALUE
+        val appVersion = "1.0.0"
+        sendRequest(
+            method = HttpMethod.Put,
+            requestUrl = "$host$ENDPOINT_URL$applicationId$PERFORMANCE_ANALYTICS_ENDPOINT",
+            parameters = mapOf(
+                APP_VERSION_KEY to appVersion,
+                PERFORMANCE_ANALYTIC_TYPE_KEY to NETWORK_REQUESTS
+            )
+        )
     }
 
-    fun noticeIssue() {
-
+    fun notifyIssue(
+        issue: Exception
+    ) {
+        // TODO: TO USE THE REAL VALUE
+        val appVersion = "1.0.0"
+        sendRequest(
+            method = HttpMethod.Put,
+            requestUrl = "$host$ENDPOINT_URL$applicationId$ISSUES_ENDPOINT",
+            parameters = mapOf(
+                APP_VERSION_KEY to appVersion
+            ),
+            payload = buildJsonObject {
+                put(ISSUE_KEY, issue.message)
+                put(DEVICE_KEY, deviceInfo.toPayload())
+            }
+        )
+        println(deviceInfo.toPayload())
     }
 
     private fun sendRequest(

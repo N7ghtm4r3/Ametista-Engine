@@ -26,7 +26,13 @@ data class EngineConfiguration(
 
         const val LAUNCH_TIME_KEY = "launch_time"
 
+        const val ISSUE_KEY = "issue"
+
+        const val ENDPOINT_URL = "/api/v1/applications/"
+
         const val PERFORMANCE_ANALYTICS_ENDPOINT = "/performance_analytics"
+
+        const val ISSUES_ENDPOINT = "/issues"
 
     }
 
