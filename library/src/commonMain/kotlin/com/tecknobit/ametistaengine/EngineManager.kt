@@ -5,6 +5,7 @@ import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.
 import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.ENDPOINT_URL
 import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.ISSUES_ENDPOINT
 import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.ISSUE_KEY
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.IS_DEBUG_MODE_KEY
 import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.LAUNCH_TIME_KEY
 import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.PERFORMANCE_ANALYTICS_ENDPOINT
 import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.PERFORMANCE_ANALYTIC_TYPE_KEY
@@ -82,21 +83,23 @@ class EngineManager private constructor(
 
     private var configurationLoaded: Boolean = false
 
-    private lateinit var requestBuilder: HttpRequestBuilder.() -> Unit
-
     private var loggingEnabled: Boolean = false
+
+    private var debugMode: Boolean = false
 
     private var initializationTimestamp: Long = 0
 
     // TODO: ADD THE POSSIBILITY TO FLAG IF THE CONFIGURATION IS IN DEBUG_MODE TO AVOID SEND OF STATS AND ISSUES 
     fun init(
         configPath: String,
-        loggingEnabled: Boolean = false
+        loggingEnabled: Boolean = false,
+        debugMode: Boolean
     ) {
         val configData = SystemFileSystem.source(Path(configPath)).buffered().readByteArray()
         init(
             configData = configData,
-            loggingEnabled = loggingEnabled
+            loggingEnabled = loggingEnabled,
+            debugMode = debugMode
         )
     }
 
@@ -116,7 +119,8 @@ class EngineManager private constructor(
     //        )
     fun init(
         configData: ByteArray,
-        loggingEnabled: Boolean = false
+        loggingEnabled: Boolean = false,
+        debugMode: Boolean
     ) {
         try {
             loadConfiguration(
@@ -125,16 +129,11 @@ class EngineManager private constructor(
             setLogging(
                 enabled = loggingEnabled
             )
-            requestBuilder = {
-                parameter(PLATFORM_KEY, platform.name)
-                headers {
-                    append(SERVER_SECRET_KEY, serverSecret)
-                }
-            }
             initializationTimestamp = Clock.System.now().toEpochMilliseconds()
         } catch (e: Exception) {
             throwInvalidConfiguration()
         }
+        this.debugMode = debugMode
     }
 
     private fun loadConfiguration(
@@ -254,6 +253,7 @@ class EngineManager private constructor(
                     url {
                         parameters {
                             parameter(PLATFORM_KEY, platform)
+                            parameter(IS_DEBUG_MODE_KEY, debugMode)
                             parameters.entries.forEach { parameter ->
                                 parameter(parameter.key, parameter.value)
                             }

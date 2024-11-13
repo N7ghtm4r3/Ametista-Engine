@@ -28,6 +28,8 @@ data class EngineConfiguration(
 
         const val SERVER_SECRET_KEY = "server_secret"
 
+        const val IS_DEBUG_MODE_KEY = "is_debug_mode"
+
         const val APPLICATION_IDENTIFIER_KEY = "application_id"
 
         const val APP_VERSION_KEY = "app_version"
