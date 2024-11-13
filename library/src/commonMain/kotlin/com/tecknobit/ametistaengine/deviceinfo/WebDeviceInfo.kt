@@ -1,6 +1,7 @@
 package com.tecknobit.ametistaengine.deviceinfo
 
 import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
 
 class WebDeviceInfo(
     uniqueIdentifier: String,
@@ -27,14 +28,10 @@ class WebDeviceInfo(
     }
 
     override fun toPayload(): JsonObject {
-        val payload = super.toPayload()
-        payload.plus(
-            pairs = listOf(
-                Pair(BROWSER_KEY, browser),
-                Pair(BROWSER_VERSION_KEY, browserVersion)
-            )
-        )
-        return payload
+        val deviceInfo = super.toPayload().toMutableMap()
+        deviceInfo[BROWSER_KEY] = JsonPrimitive(browser)
+        deviceInfo[BROWSER_VERSION_KEY] = JsonPrimitive(browserVersion)
+        return JsonObject(deviceInfo)
     }
 
 }

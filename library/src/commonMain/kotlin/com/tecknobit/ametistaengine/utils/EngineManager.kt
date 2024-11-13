@@ -23,8 +23,11 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.http.HttpStatusCode.Companion.OK
-import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.datetime.Clock
 import kotlinx.io.buffered
 import kotlinx.io.files.Path
@@ -64,6 +67,8 @@ class EngineManager private constructor(
     private val deviceInfo: DeviceInfo = provideDeviceInfo()
 
     private val ktorClient = HttpClient()
+
+    private val mutex = Mutex()
 
     private lateinit var host: String
 
@@ -218,7 +223,6 @@ class EngineManager private constructor(
                 put(DEVICE_KEY, deviceInfo.toPayload())
             }
         )
-        println(deviceInfo.toPayload())
     }
 
     private fun sendRequest(
@@ -228,32 +232,34 @@ class EngineManager private constructor(
         payload: JsonObject? = null
     ) {
         checkConfigurationValidity()
-        MainScope().launch {
-            val response = ktorClient.request(
-                urlString = requestUrl
-            ) {
-                this.method = method
-                url {
-                    parameters {
-                        parameter(PLATFORM_KEY, platform)
-                        parameters.entries.forEach { parameter ->
-                            parameter(parameter.key, parameter.value)
+        CoroutineScope(Dispatchers.Default).launch {
+            mutex.withLock {
+                val response = ktorClient.request(
+                    urlString = requestUrl
+                ) {
+                    this.method = method
+                    url {
+                        parameters {
+                            parameter(PLATFORM_KEY, platform)
+                            parameters.entries.forEach { parameter ->
+                                parameter(parameter.key, parameter.value)
+                            }
                         }
-                    }
-                    headers {
-                        append(SERVER_SECRET_KEY, serverSecret)
-                        payload?.let {
-                            append(HttpHeaders.ContentType, ContentType.Application.Json)
+                        headers {
+                            append(SERVER_SECRET_KEY, serverSecret)
+                            payload?.let {
+                                append(HttpHeaders.ContentType, ContentType.Application.Json)
+                            }
                         }
-                    }
-                    payload?.let { payload ->
-                        setBody(payload.toString())
+                        payload?.let { payload ->
+                            setBody(payload.toString())
+                        }
                     }
                 }
+                execRequest(
+                    response = response
+                )
             }
-            execRequest(
-                response = response
-            )
         }
     }
 

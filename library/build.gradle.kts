@@ -38,6 +38,13 @@ kotlin {
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         binaries.executable()
+        browser {
+            webpackTask {
+                dependencies {
+                    implementation(libs.x.cdn.jsdelivr.net.npm.ua.parser.js)
+                }
+            }
+        }
     }
     sourceSets {
         val androidMain by getting {
