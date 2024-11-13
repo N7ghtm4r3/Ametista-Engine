@@ -1,7 +1,7 @@
 package com.tecknobit.ametistaengine.utils
 
-import com.tecknobit.ametistaengine.utils.EngineConfiguration.Platform
-import com.tecknobit.ametistaengine.utils.EngineConfiguration.Platform.DESKTOP
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Platform
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Platform.DESKTOP
 
 actual fun currentPlatform(): Platform {
     return DESKTOP

@@ -1,21 +1,23 @@
-package com.tecknobit.ametistaengine.utils
+package com.tecknobit.ametistaengine
 
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.APP_VERSION_KEY
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.ENDPOINT_URL
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.ISSUES_ENDPOINT
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.ISSUE_KEY
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.LAUNCH_TIME_KEY
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.PERFORMANCE_ANALYTICS_ENDPOINT
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.PERFORMANCE_ANALYTIC_TYPE_KEY
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.PLATFORM_KEY
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.SERVER_SECRET_KEY
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.PerformanceAnalyticType.LAUNCH_TIME
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.PerformanceAnalyticType.NETWORK_REQUESTS
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Platform
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Platform.ANDROID
 import com.tecknobit.ametistaengine.deviceinfo.DeviceInfo
 import com.tecknobit.ametistaengine.deviceinfo.DeviceInfo.Companion.DEVICE_KEY
 import com.tecknobit.ametistaengine.deviceinfo.provideDeviceInfo
-import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.APP_VERSION_KEY
-import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.ENDPOINT_URL
-import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.ISSUES_ENDPOINT
-import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.ISSUE_KEY
-import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.LAUNCH_TIME_KEY
-import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.PERFORMANCE_ANALYTICS_ENDPOINT
-import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.PERFORMANCE_ANALYTIC_TYPE_KEY
-import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.PLATFORM_KEY
-import com.tecknobit.ametistaengine.utils.EngineConfiguration.Companion.SERVER_SECRET_KEY
-import com.tecknobit.ametistaengine.utils.EngineConfiguration.PerformanceAnalyticType.LAUNCH_TIME
-import com.tecknobit.ametistaengine.utils.EngineConfiguration.PerformanceAnalyticType.NETWORK_REQUESTS
-import com.tecknobit.ametistaengine.utils.EngineConfiguration.Platform
-import com.tecknobit.ametistaengine.utils.EngineConfiguration.Platform.ANDROID
+import com.tecknobit.ametistaengine.utils.currentPlatform
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import io.ktor.client.*
@@ -75,6 +77,8 @@ class EngineManager private constructor(
     private lateinit var serverSecret: String
 
     private lateinit var applicationId: String
+
+    private var appVersion: String? = null
 
     private var configurationLoaded: Boolean = false
 
@@ -137,6 +141,9 @@ class EngineManager private constructor(
         configData: ByteArray
     ) {
         val configuration: EngineConfiguration = Json.decodeFromString(configData.decodeToString())
+        appVersion = getAppVersion(
+            configuration = configuration
+        )
         host = configuration.host
         if (platform == ANDROID)
             formatHostForAndroid()
@@ -153,8 +160,20 @@ class EngineManager private constructor(
             .replace(LOCALHOST_ADDRESS_VALUE, ANDROID_LOCALHOST_VALUE)
     }
 
+    private fun getAppVersion(
+        configuration: EngineConfiguration
+    ): String? {
+        val targetAppVersion = configuration.getTargetConfiguration(
+            platform = platform
+        )?.appVersion?.ifEmpty { null }
+        return if (targetAppVersion == null)
+            configuration.appVersion?.ifEmpty { null }
+        else
+            targetAppVersion
+    }
+
     private fun isValidConfiguration(): Boolean {
-        return isValidHost() && serverSecret.isNotBlank() && applicationId.isNotBlank()
+        return appVersion != null && isValidHost() && serverSecret.isNotBlank() && applicationId.isNotBlank()
     }
 
     private fun isValidHost(): Boolean {
@@ -178,14 +197,12 @@ class EngineManager private constructor(
     }
 
     fun notifyAppLaunch() {
-        // TODO: TO USE THE REAL VALUE
-        val appVersion = "1.0.0"
         val launchTime = Clock.System.now().toEpochMilliseconds() - initializationTimestamp
         sendRequest(
             method = HttpMethod.Put,
             requestUrl = "$host$ENDPOINT_URL$applicationId$PERFORMANCE_ANALYTICS_ENDPOINT",
             parameters = mapOf(
-                APP_VERSION_KEY to appVersion,
+                APP_VERSION_KEY to appVersion!!,
                 PERFORMANCE_ANALYTIC_TYPE_KEY to LAUNCH_TIME
             ),
             payload = buildJsonObject {
@@ -195,13 +212,11 @@ class EngineManager private constructor(
     }
 
     fun notifyNetworkRequest() {
-        // TODO: TO USE THE REAL VALUE
-        val appVersion = "1.0.0"
         sendRequest(
             method = HttpMethod.Put,
             requestUrl = "$host$ENDPOINT_URL$applicationId$PERFORMANCE_ANALYTICS_ENDPOINT",
             parameters = mapOf(
-                APP_VERSION_KEY to appVersion,
+                APP_VERSION_KEY to appVersion!!,
                 PERFORMANCE_ANALYTIC_TYPE_KEY to NETWORK_REQUESTS
             )
         )
@@ -210,13 +225,11 @@ class EngineManager private constructor(
     fun notifyIssue(
         issue: Exception
     ) {
-        // TODO: TO USE THE REAL VALUE
-        val appVersion = "1.0.0"
         sendRequest(
             method = HttpMethod.Put,
             requestUrl = "$host$ENDPOINT_URL$applicationId$ISSUES_ENDPOINT",
             parameters = mapOf(
-                APP_VERSION_KEY to appVersion
+                APP_VERSION_KEY to appVersion!!
             ),
             payload = buildJsonObject {
                 put(ISSUE_KEY, issue.message)
@@ -287,7 +300,12 @@ class EngineManager private constructor(
     }
 
     private fun throwInvalidConfiguration() {
-        throw IllegalArgumentException("Invalid configuration, check it before running the engine")
+        val message = if (appVersion != null)
+            "Invalid configuration, check it before running the engine"
+        else
+        // TODO: ADD THE REFERENCE LINK TO THE DOCU
+            "Invalid app app version, set one or specific for each target before running the engine\nSee more at:"
+        throw IllegalArgumentException(message)
     }
 
 }

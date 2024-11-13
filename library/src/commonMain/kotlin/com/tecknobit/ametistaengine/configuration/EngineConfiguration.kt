@@ -1,5 +1,7 @@
-package com.tecknobit.ametistaengine.utils
+package com.tecknobit.ametistaengine.configuration
 
+import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Platform.*
+import com.tecknobit.ametistaengine.configuration.targets.*
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -9,7 +11,17 @@ data class EngineConfiguration(
     @SerialName(SERVER_SECRET_KEY)
     val serverSecret: String,
     @SerialName(APPLICATION_IDENTIFIER_KEY)
-    val applicationId: String
+    val applicationId: String,
+    @SerialName(APP_VERSION_KEY)
+    val appVersion: String? = null,
+    @SerialName("android")
+    val androidConfig: AndroidConfig? = null,
+    @SerialName("ios")
+    val iosConfig: IosConfig? = null,
+    @SerialName("desktop")
+    val desktopConfig: DesktopConfig? = null,
+    @SerialName("web")
+    val webConfig: WebConfig? = null
 ) {
 
     companion object {
@@ -58,6 +70,17 @@ data class EngineConfiguration(
 
         ISSUES_PER_SESSION
 
+    }
+
+    fun getTargetConfiguration(
+        platform: Platform
+    ): TargetConfig? {
+        return when (platform) {
+            ANDROID -> androidConfig
+            IOS -> iosConfig
+            DESKTOP -> desktopConfig
+            WEB -> webConfig
+        }
     }
 
 }
