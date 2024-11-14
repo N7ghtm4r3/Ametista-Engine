@@ -18,6 +18,7 @@ import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Platform.A
 import com.tecknobit.ametistaengine.deviceinfo.DeviceInfo
 import com.tecknobit.ametistaengine.deviceinfo.DeviceInfo.Companion.DEVICE_KEY
 import com.tecknobit.ametistaengine.deviceinfo.provideDeviceInfo
+import com.tecknobit.ametistaengine.utils.catchIssue
 import com.tecknobit.ametistaengine.utils.currentPlatform
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
@@ -25,6 +26,7 @@ import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import io.ktor.http.HttpMethod.Companion.Put
 import io.ktor.http.HttpStatusCode.Companion.OK
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -38,7 +40,7 @@ import kotlinx.io.files.SystemFileSystem
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.*
 
-class EngineManager private constructor(
+class AmetistaEngine private constructor(
     private val platform: Platform
 ) {
 
@@ -46,12 +48,6 @@ class EngineManager private constructor(
 
         // TODO: WARN ABOUT HIDE THE FILE FOR EXAMPLE IN THE COMMIT OR PUBLIC PUBLISHING 
         const val FILES_AMETISTA_CONFIG_PATHNAME = "files/ametista.config"
-
-        val engineManager: EngineManager by lazy {
-            EngineManager(
-                platform = currentPlatform()
-            )
-        }
 
         private const val ANDROID_LOCALHOST_VALUE = "10.0.2.2"
 
@@ -64,6 +60,19 @@ class EngineManager private constructor(
         private const val STATUS_KEY = "status"
 
         private const val REQUEST_FAILED = "FAILED"
+
+        private var initializationTimestamp: Long = -1
+
+        val ametistaEngine: AmetistaEngine by lazy {
+            AmetistaEngine(
+                platform = currentPlatform()
+            )
+        }
+
+        fun intake() {
+            initializationTimestamp = Clock.System.now().toEpochMilliseconds()
+            catchIssue()
+        }
 
     }
 
@@ -87,16 +96,14 @@ class EngineManager private constructor(
 
     private var debugMode: Boolean = false
 
-    private var initializationTimestamp: Long = 0
-
     // TODO: ADD THE POSSIBILITY TO FLAG IF THE CONFIGURATION IS IN DEBUG_MODE TO AVOID SEND OF STATS AND ISSUES 
-    fun init(
+    fun fireUp(
         configPath: String,
         loggingEnabled: Boolean = false,
         debugMode: Boolean
     ) {
         val configData = SystemFileSystem.source(Path(configPath)).buffered().readByteArray()
-        init(
+        fireUp(
             configData = configData,
             loggingEnabled = loggingEnabled,
             debugMode = debugMode
@@ -104,24 +111,21 @@ class EngineManager private constructor(
     }
 
     // TODO: WARN IN THE DOCU ABOUT THIS USAGE EXAMPLE WITH val bytes = Res.readBytes("files/ametista.config")
-    // TODO: val engineManager = EngineManager.engineManager
-    //        var text by remember { mutableStateOf("loading...") }
-    //        LaunchedEffect(
-    //            Unit
-    //        ) {
-    //            engineManager.init(
-    //                configData = Res.readBytes(FILES_AMETISTA_CONFIG_PATHNAME)
-    //            )
-    //            text = engineManager.host
-    //        }
-    //        Text(
-    //            text = text
+    // TODO: LaunchedEffect(Unit) {
+    //        val ametistaEngine = AmetistaEngine.ametistaEngine
+    //        ametistaEngine.fireUp(
+    //            configData = Res.readBytes(FILES_AMETISTA_CONFIG_PATHNAME),
+    //            loggingEnabled = true,
+    //            debugMode = true
     //        )
-    fun init(
+    //    }
+    fun fireUp(
         configData: ByteArray,
         loggingEnabled: Boolean = false,
         debugMode: Boolean
     ) {
+        if (initializationTimestamp < 0)
+            throw IllegalArgumentException("To correctly start the engine you must invoke AmetistaEngine.intake method first")
         try {
             loadConfiguration(
                 configData = configData
@@ -129,7 +133,7 @@ class EngineManager private constructor(
             setLogging(
                 enabled = loggingEnabled
             )
-            initializationTimestamp = Clock.System.now().toEpochMilliseconds()
+            notifyAppLaunch()
         } catch (e: Exception) {
             throwInvalidConfiguration()
         }
@@ -190,16 +194,15 @@ class EngineManager private constructor(
 
     fun connectPlatform() {
         sendRequest(
-            method = HttpMethod.Put,
-            requestUrl = "$host$ENDPOINT_URL$applicationId"
+            method = Put
         )
     }
 
-    fun notifyAppLaunch() {
+    private fun notifyAppLaunch() {
         val launchTime = Clock.System.now().toEpochMilliseconds() - initializationTimestamp
         sendRequest(
-            method = HttpMethod.Put,
-            requestUrl = "$host$ENDPOINT_URL$applicationId$PERFORMANCE_ANALYTICS_ENDPOINT",
+            method = Put,
+            endpoint = PERFORMANCE_ANALYTICS_ENDPOINT,
             parameters = mapOf(
                 APP_VERSION_KEY to appVersion!!,
                 PERFORMANCE_ANALYTIC_TYPE_KEY to LAUNCH_TIME
@@ -212,8 +215,8 @@ class EngineManager private constructor(
 
     fun notifyNetworkRequest() {
         sendRequest(
-            method = HttpMethod.Put,
-            requestUrl = "$host$ENDPOINT_URL$applicationId$PERFORMANCE_ANALYTICS_ENDPOINT",
+            method = Put,
+            endpoint = PERFORMANCE_ANALYTICS_ENDPOINT,
             parameters = mapOf(
                 APP_VERSION_KEY to appVersion!!,
                 PERFORMANCE_ANALYTIC_TYPE_KEY to NETWORK_REQUESTS
@@ -222,16 +225,17 @@ class EngineManager private constructor(
     }
 
     fun notifyIssue(
-        issue: Exception
+        issue: Throwable
     ) {
+        println(issue.stackTraceToString())
         sendRequest(
-            method = HttpMethod.Put,
-            requestUrl = "$host$ENDPOINT_URL$applicationId$ISSUES_ENDPOINT",
+            method = Put,
+            endpoint = ISSUES_ENDPOINT,
             parameters = mapOf(
                 APP_VERSION_KEY to appVersion!!
             ),
             payload = buildJsonObject {
-                put(ISSUE_KEY, issue.message)
+                put(ISSUE_KEY, issue.stackTraceToString())
                 put(DEVICE_KEY, deviceInfo.toPayload())
             }
         )
@@ -239,7 +243,7 @@ class EngineManager private constructor(
 
     private fun sendRequest(
         method: HttpMethod,
-        requestUrl: String,
+        endpoint: String = "",
         parameters: Map<String, Any> = emptyMap(),
         payload: JsonObject? = null
     ) {
@@ -247,7 +251,7 @@ class EngineManager private constructor(
         CoroutineScope(Dispatchers.Default).launch {
             mutex.withLock {
                 val response = ktorClient.request(
-                    urlString = requestUrl
+                    urlString = "$host$ENDPOINT_URL$applicationId$endpoint"
                 ) {
                     this.method = method
                     url {
