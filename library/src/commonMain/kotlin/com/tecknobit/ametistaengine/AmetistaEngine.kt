@@ -28,8 +28,7 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.http.HttpMethod.Companion.Put
 import io.ktor.http.HttpStatusCode.Companion.OK
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -81,6 +80,10 @@ class AmetistaEngine private constructor(
     private val ktorClient = HttpClient()
 
     private val mutex = Mutex()
+
+    private val configurationMutex = Mutex(
+        locked = true
+    )
 
     private lateinit var host: String
 
@@ -192,6 +195,16 @@ class AmetistaEngine private constructor(
             Napier.base(DebugAntilog())
     }
 
+    fun execAfterConfigurationLoaded(
+        action: () -> Unit
+    ) {
+        MainScope().launch {
+            configurationMutex.withLock {
+                action.invoke()
+            }
+        }
+    }
+
     fun connectPlatform() {
         sendRequest(
             method = Put
@@ -199,6 +212,7 @@ class AmetistaEngine private constructor(
     }
 
     private fun notifyAppLaunch() {
+        configurationMutex.unlock()
         val launchTime = Clock.System.now().toEpochMilliseconds() - initializationTimestamp
         sendRequest(
             method = Put,
@@ -227,7 +241,14 @@ class AmetistaEngine private constructor(
     fun notifyIssue(
         issue: Throwable
     ) {
-        println(issue.stackTraceToString())
+        notifyIssue(
+            issue = issue.stackTraceToString()
+        )
+    }
+
+    fun notifyIssue(
+        issue: String
+    ) {
         sendRequest(
             method = Put,
             endpoint = ISSUES_ENDPOINT,
@@ -235,7 +256,7 @@ class AmetistaEngine private constructor(
                 APP_VERSION_KEY to appVersion!!
             ),
             payload = buildJsonObject {
-                put(ISSUE_KEY, issue.stackTraceToString())
+                put(ISSUE_KEY, issue)
                 put(DEVICE_KEY, deviceInfo.toPayload())
             }
         )
@@ -248,7 +269,7 @@ class AmetistaEngine private constructor(
         payload: JsonObject? = null
     ) {
         checkConfigurationValidity()
-        CoroutineScope(Dispatchers.Default).launch {
+        MainScope().launch {
             mutex.withLock {
                 val response = ktorClient.request(
                     urlString = "$host$ENDPOINT_URL$applicationId$endpoint"

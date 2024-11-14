@@ -1,8 +1,13 @@
 package com.tecknobit.ametistaengine.utils
 
+import com.tecknobit.ametistaengine.AmetistaEngine
+
 actual fun catchIssue() {
-    // TODO: TO TEST
     NSSetUncaughtExceptionHandler { exception ->
-        println(exception)
+        val ametistaEngine = AmetistaEngine.ametistaEngine
+        val issue = Exception(exception.reason)
+        ametistaEngine.notifyIssue(
+            issue = issue
+        )
     }
 }
