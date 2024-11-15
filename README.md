@@ -54,6 +54,64 @@ also of the different versions of the application
 
 ## Integration
 
+### Implementation
+
+#### Version catalog
+
+```gradle
+[versions]
+ametista-engine = "1.0.0"
+
+[libraries]
+ametista-engine = { module = "io.github.n7ghtm4r3:Ametista-Engine", version.ref = "ametista-engine" } 
+```
+
+#### Gradle
+
+Add the JitPack repository to your build file
+
+- Add it in your root build.gradle at the end of repositories
+         
+    ```gradle
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+    ```
+
+    #### Gradle (Kotlin)
+         
+    ```gradle
+    repositories {
+        ...
+        maven("https://jitpack.io")
+    }
+    ```
+    
+- Add the dependency
+         
+    ```gradle
+    dependencies {
+        implementation 'io.github.n7ghtm4r3:Ametista-Engine:1.0.0'
+    }
+    ```
+
+    #### Gradle (Kotlin)
+         
+    ```gradle
+    dependencies {
+        implementation("io.github.n7ghtm4r3:Ametista-Engine:1.0.0")
+    }
+    ```
+
+    #### Gradle (version catalog)
+         
+    ```gradle
+    dependencies {
+        implementation(libs.ametista.engine)
+    }
+    ```
+
 ### Configuration file
 
 To send the issues and the performance analytics to your backend you have to create the related **"ametista.config"**
