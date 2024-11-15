@@ -39,34 +39,74 @@ import kotlinx.io.files.SystemFileSystem
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.*
 
+/**
+ * The **AmetistaEngine** class is the core component of the Ametista system.
+ * It collects performance data and tracks issues to send to your backend instance for analysis
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ */
 class AmetistaEngine private constructor(
     private val platform: Platform
 ) {
 
     companion object {
 
+        /**
+         * **FILES_AMETISTA_CONFIG_PATHNAME** -> the pathname of the configuration file located in the common resources
+         * folder
+         */
         const val FILES_AMETISTA_CONFIG_PATHNAME = "files/ametista.config"
 
+        /**
+         * **ANDROID_LOCALHOST_VALUE** -> the value of the localhost for the **Android** emulators
+         */
         private const val ANDROID_LOCALHOST_VALUE = "10.0.2.2"
 
+        /**
+         * **LOCALHOST_VALUE** -> the "localhost" value
+         */
         private const val LOCALHOST_VALUE = "localhost"
 
+        /**
+         * **LOCALHOST_ADDRESS_VALUE** -> the "127.0.0.1" address value
+         */
         private const val LOCALHOST_ADDRESS_VALUE = "127.0.0.1"
 
+        /**
+         * **RESPONSE_KEY** -> the response key
+         */
         private const val RESPONSE_KEY = "response"
 
+        /**
+         * **STATUS_KEY** -> the status key
+         */
         private const val STATUS_KEY = "status"
 
+        /**
+         * **REQUEST_FAILED** -> the failed response status
+         */
         private const val REQUEST_FAILED = "FAILED"
 
+        /**
+         * **initializationTimestamp** -> the current timestamp when the engine has been initialized invoking
+         * the [intake] method
+         */
         private var initializationTimestamp: Long = -1
 
+        /**
+         * **ametistaEngine** -> the singleton instance of the engine to use in the clients application, will be
+         * returned the specific instance for each target platform
+         */
         val ametistaEngine: AmetistaEngine by lazy {
             AmetistaEngine(
                 platform = currentPlatform()
             )
         }
 
+        /**
+         * Method to start the [AmetistaEngine] session initializing the [initializationTimestamp] and register the
+         * [catchIssue] handler
+         */
         fun intake() {
             initializationTimestamp = Clock.System.now().toEpochMilliseconds()
             catchIssue()
@@ -74,30 +114,72 @@ class AmetistaEngine private constructor(
 
     }
 
+    /**
+     * **deviceInfo** -> the current device information
+     */
     private val deviceInfo: DeviceInfo = provideDeviceInfo()
 
+    /**
+     * **ktorClient** -> the HTTP client used to send the stats and the performance data
+     */
     private val ktorClient = HttpClient()
 
-    private val mutex = Mutex()
+    /**
+     * **requestsMutex** -> the mutex used to synchronize the requests to avoid the interleaving between each request
+     */
+    private val requestsMutex = Mutex()
 
+    /**
+     * **configurationMutex** -> the mutex used to wait the configuration loaded before execute any operation
+     */
     private val configurationMutex = Mutex(
         locked = true
     )
 
+    /**
+     * **host** -> the host address where send the stats and performance data collected
+     */
     private lateinit var host: String
 
+    /**
+     * **serverSecret** -> the server secret value used as authentication method to validate the requests of the Engine
+     */
     private lateinit var serverSecret: String
 
+    /**
+     * **applicationId** -> the identifier of the current application managed by the Engine
+     */
     private lateinit var applicationId: String
 
+    /**
+     * **appVersion** -> the current application version managed by the Engine
+     */
     private var appVersion: String? = null
 
+    /**
+     * **configurationLoaded** -> whether the configuration has been loaded correctly
+     */
     private var configurationLoaded: Boolean = false
 
+    /**
+     * **loggingEnabled** -> whether the logging is enabled
+     */
     private var loggingEnabled: Boolean = false
 
+    /**
+     * **debugMode** -> whether the Engine must send the requests but the server must not collect as real, this is the
+     * use-case of a not-production environment
+     */
     private var debugMode: Boolean = false
 
+    /**
+     * Method to initialize the Engine with the configuration data and the flags available
+     *
+     * @param configPath is the configuration path where the config file is located
+     * @param loggingEnabled concerns whether log the operation of the Engine
+     * @param debugMode concerns whether the Engine must send the requests but the server must not collect as real, this is the
+     * use-case of a not-production environment
+     */
     fun fireUp(
         configPath: String,
         loggingEnabled: Boolean = false,
@@ -111,6 +193,14 @@ class AmetistaEngine private constructor(
         )
     }
 
+    /**
+     * Method to initialize the Engine with the configuration data and the flags available
+     *
+     * @param configData are the config data as [ByteArray]
+     * @param loggingEnabled concerns whether log the operation of the Engine
+     * @param debugMode concerns whether the Engine must send the requests but the server must not collect as real, this is the
+     * use-case of a not-production environment
+     */
     fun fireUp(
         configData: ByteArray,
         loggingEnabled: Boolean = false,
@@ -132,6 +222,12 @@ class AmetistaEngine private constructor(
         this.debugMode = debugMode
     }
 
+    /**
+     * Method to load the configuration serializing the data in the [EngineConfiguration] data class
+     * and initializing the [host], [serverSecret], [applicationId] and [appVersion] instances
+     *
+     * @param configData the data from instantiate the [EngineConfiguration]
+     */
     private fun loadConfiguration(
         configData: ByteArray
     ) {
@@ -149,12 +245,24 @@ class AmetistaEngine private constructor(
             throwInvalidConfiguration()
     }
 
+    /**
+     * Method to format the [host] value in the correct localhost value address for the **Android** emulators
+     * with the [ANDROID_LOCALHOST_VALUE]
+     */
     private fun formatHostForAndroid() {
         host = host
             .replace(LOCALHOST_VALUE, ANDROID_LOCALHOST_VALUE)
             .replace(LOCALHOST_ADDRESS_VALUE, ANDROID_LOCALHOST_VALUE)
     }
 
+    /**
+     * Method to get from the engine configuration the application version, this method check first if the version is
+     * specific for the current platform where the application is running, if not found will be used the generic one
+     *
+     * @param configuration from search the application version
+     *
+     * @return application version as [String]
+     */
     private fun getAppVersion(
         configuration: EngineConfiguration
     ): String? {
@@ -167,15 +275,30 @@ class AmetistaEngine private constructor(
             targetAppVersion
     }
 
+    /**
+     * Method to check whether the configuration is correctly loaded
+     *
+     * @return whether the configuration is correctly loaded as [Boolean]
+     */
     private fun isValidConfiguration(): Boolean {
         return appVersion != null && isValidHost() && serverSecret.isNotBlank() && applicationId.isNotBlank()
     }
 
+    /**
+     * Method to check whether the [host] value is correctly formatted
+     *
+     * @return whether the [host] value is correctly formatted as [Boolean]
+     */
     private fun isValidHost(): Boolean {
         val regex = "^(https?|ftp|file|mailto|data|ws|wss)://([a-zA-Z0-9\\-.]+)(:\\d+)?(/\\S*)?$"
         return regex.toRegex().matches(host)
     }
 
+    /**
+     * Method to set the logging
+     *
+     * @param enabled whether enable or not the logging
+     */
     private fun setLogging(
         enabled: Boolean
     ) {
@@ -184,6 +307,12 @@ class AmetistaEngine private constructor(
             Napier.base(DebugAntilog())
     }
 
+    /**
+     * Method to execute an action after the configuration has been loaded. The [configurationMutex] synchronize
+     * the access locking it waiting the configuration loading
+     *
+     * @param action to execute when the configuration has been loaded
+     */
     fun execAfterConfigurationLoaded(
         action: () -> Unit
     ) {
@@ -194,12 +323,22 @@ class AmetistaEngine private constructor(
         }
     }
 
+    /**
+     * Method to connect the platform where the application is currently running.
+     *
+     * Look at the documentation [here](https://github.com/N7ghtm4r3/Ametista-Engine?tab=readme-ov-file#connection-procedure)
+     */
     fun connectPlatform() {
         sendRequest(
             method = Put
         )
     }
 
+    /**
+     * Method to notify the application launch and send the related value to the server.
+     *
+     * The [configurationMutex] is unlocked by this method
+     */
     private fun notifyAppLaunch() {
         configurationMutex.unlock()
         val launchTime = Clock.System.now().toEpochMilliseconds() - initializationTimestamp
@@ -216,6 +355,11 @@ class AmetistaEngine private constructor(
         )
     }
 
+    /**
+     * Method to request the count of a network request sent by the application
+     *
+     * Look at the documentation [here](https://github.com/N7ghtm4r3/Ametista-Engine?tab=readme-ov-file#network-requests-count-if-needed)
+     */
     fun notifyNetworkRequest() {
         sendRequest(
             method = Put,
@@ -227,6 +371,11 @@ class AmetistaEngine private constructor(
         )
     }
 
+    /**
+     * Method to send the crash report of an issue occurred during the runtime of the application
+     *
+     * @param issue from fetch its stack trace to send as report
+     */
     fun notifyIssue(
         issue: Throwable
     ) {
@@ -235,6 +384,11 @@ class AmetistaEngine private constructor(
         )
     }
 
+    /**
+     * Method to send the crash report of an issue occurred during the runtime of the application
+     *
+     * @param issue details to create the report
+     */
     fun notifyIssue(
         issue: String
     ) {
@@ -251,6 +405,14 @@ class AmetistaEngine private constructor(
         )
     }
 
+    /**
+     * Method to send a request
+     *
+     * @param method of the request
+     * @param endpoint of the request
+     * @param parameters of the request
+     * @param payload of the request
+     */
     private fun sendRequest(
         method: HttpMethod,
         endpoint: String = "",
@@ -259,7 +421,7 @@ class AmetistaEngine private constructor(
     ) {
         checkConfigurationValidity()
         MainScope().launch {
-            mutex.withLock {
+            requestsMutex.withLock {
                 val response = ktorClient.request(
                     urlString = "$host$ENDPOINT_URL$applicationId$endpoint"
                 ) {
@@ -290,6 +452,11 @@ class AmetistaEngine private constructor(
         }
     }
 
+    /**
+     * Method to execute the request
+     *
+     * @param response object obtained in the [sendRequest] method
+     */
     private suspend fun execRequest(
         response: HttpResponse
     ) {
@@ -308,11 +475,18 @@ class AmetistaEngine private constructor(
         }
     }
 
+    /**
+     * Method to check the validity of the configuration loaded
+     */
     private fun checkConfigurationValidity() {
         if (!configurationLoaded)
             throwInvalidConfiguration()
     }
 
+    /**
+     * Method to throw an error if the configuration is not valid, if the error is related to the [appVersion] will
+     * be instead used a specific message
+     */
     private fun throwInvalidConfiguration() {
         val message = if (appVersion != null)
             "Invalid configuration, check it before running the engine"
