@@ -273,8 +273,12 @@ your_interceptor_scope {
 ```
 
 And that's it! The Engine is fully integrated on your clients and working in coroutines it will not affect your
-application
-main workflow
+application main workflow
+
+## Privacy Policy
+
+If you need to inform the users about the tracking activity or performance monitoring of the Ametista-Engine you can
+use this [template](https://github.com/N7ghtm4r3/Ametista-Engine/blob/main/POLICY.md) and customize it as you need
 
 ## Authors
 
