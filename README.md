@@ -333,6 +333,44 @@ your_interceptor_scope {
 And that's it! The Engine is fully integrated on your clients and working in coroutines it will not affect your
 application main workflow
 
+## Connection procedure
+
+### Invocation 
+
+To connect the specific platform for your application you need to invoke the related method as following:
+
+```kotlin
+@Composable
+fun App() {
+    val ametistaEngine = AmetistaEngine.ametistaEngine
+    
+    // after engine initialized
+    
+    ametistaEngine.connectPlatform() // running on Desktop for example
+
+    MaterialTheme {
+        Column (
+            modifier = Modifier
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "Hello World!"
+            )
+        }
+    }
+}
+```
+
+### Connection phase
+
+The method automatically detects the platform on which the application it is launched and connects with it. For example, if launched on a desktop, it will connect with the Desktop platform and so on for other platforms.
+
+### Platform connected
+
+Once the platform has been connected, you can remove the method invocation for that platform to prevent retry attempts to connect to the same platform, or you can connect other platforms and follow the same procedure phases
+
 ## Privacy Policy
 
 If you need to inform the users about the tracking activity or performance monitoring of the Ametista-Engine you can
