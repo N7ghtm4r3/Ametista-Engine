@@ -106,8 +106,7 @@ mavenPublishing {
     )
     pom {
         name.set("Ametista-Engine")
-        // TODO: TO SET
-        //description.set("Utilities for clients with an architecture based on SpringBoot and Jetpack Compose frameworks. Is a support library to implement some utilities for the clients and some default composable such OutlinedTextField, AlertDialogs and different others")
+        description.set("Self-hosted issues tracker and performance stats collector about Compose Multiplatform applications")
         inceptionYear.set("2024")
         url.set("https://github.com/N7ghtm4r3/Ametista-Engine")
 
@@ -126,7 +125,7 @@ mavenPublishing {
             }
         }
         scm {
-            //url.set("https://github.com/N7ghtm4r3/Ametista-Engine")
+            url.set("https://github.com/N7ghtm4r3/Ametista-Engine")
         }
     }
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)

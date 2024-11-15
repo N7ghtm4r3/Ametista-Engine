@@ -45,7 +45,6 @@ class AmetistaEngine private constructor(
 
     companion object {
 
-        // TODO: WARN ABOUT HIDE THE FILE FOR EXAMPLE IN THE COMMIT OR PUBLIC PUBLISHING 
         const val FILES_AMETISTA_CONFIG_PATHNAME = "files/ametista.config"
 
         private const val ANDROID_LOCALHOST_VALUE = "10.0.2.2"
@@ -99,7 +98,6 @@ class AmetistaEngine private constructor(
 
     private var debugMode: Boolean = false
 
-    // TODO: ADD THE POSSIBILITY TO FLAG IF THE CONFIGURATION IS IN DEBUG_MODE TO AVOID SEND OF STATS AND ISSUES 
     fun fireUp(
         configPath: String,
         loggingEnabled: Boolean = false,
@@ -113,15 +111,6 @@ class AmetistaEngine private constructor(
         )
     }
 
-    // TODO: WARN IN THE DOCU ABOUT THIS USAGE EXAMPLE WITH val bytes = Res.readBytes("files/ametista.config")
-    // TODO: LaunchedEffect(Unit) {
-    //        val ametistaEngine = AmetistaEngine.ametistaEngine
-    //        ametistaEngine.fireUp(
-    //            configData = Res.readBytes(FILES_AMETISTA_CONFIG_PATHNAME),
-    //            loggingEnabled = true,
-    //            debugMode = true
-    //        )
-    //    }
     fun fireUp(
         configData: ByteArray,
         loggingEnabled: Boolean = false,
@@ -328,8 +317,7 @@ class AmetistaEngine private constructor(
         val message = if (appVersion != null)
             "Invalid configuration, check it before running the engine"
         else
-        // TODO: ADD THE REFERENCE LINK TO THE DOCU
-            "Invalid app app version, set one or specific for each target before running the engine\nSee more at:"
+            "Invalid app app version, set one or specific for each target before running the engine\nSee more at: https://github.com/N7ghtm4r3/Ametista-Engine?tab=readme-ov-file#connection-procedure"
         throw IllegalArgumentException(message)
     }
 
