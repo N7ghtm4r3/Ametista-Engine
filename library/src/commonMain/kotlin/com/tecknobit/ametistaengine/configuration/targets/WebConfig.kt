@@ -4,6 +4,15 @@ import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * The **DesktopConfig** class is the container of the configuration details for the web target
+ *
+ * @param appVersion The current application version managed by the Engine
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ *
+ * @see TargetConfig
+ */
 @Serializable
 data class WebConfig(
     @SerialName(APP_VERSION_KEY)

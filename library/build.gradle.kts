@@ -1,6 +1,9 @@
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinMultiplatform
 import com.vanniktech.maven.publish.SonatypeHost
+import org.jetbrains.dokka.DokkaConfiguration.Visibility.*
+import org.jetbrains.dokka.base.DokkaBase
+import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -9,7 +12,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.vanniktech.mavenPublish)
-    id("org.jetbrains.dokka") version "1.9.20"
+    alias(libs.plugins.dokka)
     kotlin("plugin.serialization") version "2.0.20"
 }
 
@@ -137,5 +140,28 @@ android {
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
+    }
+}
+
+buildscript {
+    dependencies {
+        classpath(libs.dokka.base)
+    }
+}
+
+subprojects {
+    apply(plugin = "org.jetbrains.dokka")
+}
+
+tasks.dokkaHtml {
+    outputDirectory.set(layout.projectDirectory.dir("../docs"))
+    dokkaSourceSets.configureEach {
+        moduleName = "Ametista-Engine"
+        includeNonPublic.set(true)
+        documentedVisibilities.set(setOf(PUBLIC, PROTECTED, PRIVATE))
+    }
+    pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
+        customAssets = listOf(file("../docs/logo-icon.svg"))
+        footerMessage = "(c) 2024 Tecknobit"
     }
 }

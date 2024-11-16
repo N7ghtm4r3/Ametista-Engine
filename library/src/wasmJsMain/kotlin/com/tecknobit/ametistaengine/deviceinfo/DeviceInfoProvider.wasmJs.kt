@@ -2,8 +2,16 @@ package com.tecknobit.ametistaengine.deviceinfo
 
 import kotlinx.browser.window
 
+/**
+ * **UKNOWN** -> the uknown value to use when the specific information has not found
+ */
 private const val UKNOWN = "uknown"
 
+/**
+ * Method to provide the current device information
+ *
+ * @return the device information as [WebDeviceInfo]
+ */
 actual fun provideDeviceInfo(): DeviceInfo {
     val userAgent = window.navigator.userAgent
     val result = parseUserAgent(
@@ -20,6 +28,11 @@ actual fun provideDeviceInfo(): DeviceInfo {
     )
 }
 
+/**
+ * Method to use a null-safe value
+ *
+ * @return the found value or the [UKNOWN] value as [String]
+ */
 private fun String?.safeValue(): String {
     return if (this != null)
         this

@@ -2,8 +2,16 @@ package com.tecknobit.ametistaengine.deviceinfo
 
 import com.devx.kdeviceinfo.DeviceInfoXState
 
+/**
+ * **APPLE_BRAND** -> constant "apple" value
+ */
 private const val APPLE_BRAND = "Apple"
 
+/**
+ * Method to provide the current device information
+ *
+ * @return the device information as [DeviceInfo]
+ */
 actual fun provideDeviceInfo(): DeviceInfo {
     val deviceInfo = DeviceInfoXState().iosInfo
     val brand: String = APPLE_BRAND

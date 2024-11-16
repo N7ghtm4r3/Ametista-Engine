@@ -6,46 +6,111 @@ import android.os.Build.VERSION_CODES.*
 import com.tecknobit.apimanager.apis.APIRequest
 import com.tecknobit.apimanager.apis.APIRequest.SHA1_ALGORITHM
 
+/**
+ * **BASE** -> "BASE" Android operating system name
+ */
 private const val BASE = "Base"
 
+/**
+ * **CUPCAKE** -> "CUPCAKE" Android operating system name
+ */
 private const val CUPCAKE = "Cupcake"
 
+/**
+ * **DONUT** -> "DONUT" Android operating system name
+ */
 private const val DONUT = "Donut"
 
+/**
+ * **ECLAIR** -> "Eclair" Android operating system name
+ */
 private const val ECLAIR = "Eclair"
 
+/**
+ * **FROYO** -> "Froyo" Android operating system name
+ */
 private const val FROYO = "Froyo"
 
+/**
+ * **GINGERBREAD** -> "Gingerbread" Android operating system name
+ */
 private const val GINGERBREAD = "Gingerbread"
 
+/**
+ * **HONEYCOMB** -> "Honeycomb" Android operating system name
+ */
 private const val HONEYCOMB = "Honeycomb"
 
+/**
+ * **ICE_CREAM_SANDWICH** -> "Ice cream Sandwich" Android operating system name
+ */
 private const val ICE_CREAM_SANDWICH = "Ice cream Sandwich"
 
+/**
+ * **JELLY_BEAN** -> "Jellybean" Android operating system name
+ */
 private const val JELLY_BEAN = "Jellybean"
 
+/**
+ * **KITKAT** -> "Kitkat" Android operating system name
+ */
 private const val KITKAT = "Kitkat"
 
+/**
+ * **LOLLIPOP** -> "Lollipop" Android operating system name
+ */
 private const val LOLLIPOP = "Lollipop"
 
+/**
+ * **MARSHMALLOW** -> "Marshmallow" Android operating system name
+ */
 private const val MARSHMALLOW = "Marshmallow"
 
+/**
+ * **NOUGAT** -> "Nougat" Android operating system name
+ */
 private const val NOUGAT = "Nougat"
 
+/**
+ * **OREO** -> "Oreo" Android operating system name
+ */
 private const val OREO = "Oreo"
 
+/**
+ * **PIE** -> "Pie" Android operating system name
+ */
 private const val PIE = "Pie"
 
+/**
+ * **ANDROID_10** -> "Android 10" Android operating system name
+ */
 private const val ANDROID_10 = "Android 10"
 
+/**
+ * **RED_VELVET_CAKE** -> "Red Velvet Cake" Android operating system name
+ */
 private const val RED_VELVET_CAKE = "Red Velvet Cake"
 
+/**
+ * **SNOW_CONE** -> "Snow Cone" Android operating system name
+ */
 private const val SNOW_CONE = "Snow Cone"
 
+/**
+ * **TIRAMISU** -> "Tiramisu" Android operating system name
+ */
 private const val TIRAMISU = "Tiramisu"
 
+/**
+ * **UPSIDE_DOWN_CAKE** -> "Upside down cake" Android operating system name
+ */
 private const val UPSIDE_DOWN_CAKE = "Upside down cake"
 
+/**
+ * Method to provide the current device information
+ *
+ * @return the device information as [DeviceInfo]
+ */
 actual fun provideDeviceInfo(): DeviceInfo {
     val brand: String = Build.BRAND
     val model: String = Build.MODEL
@@ -61,6 +126,11 @@ actual fun provideDeviceInfo(): DeviceInfo {
     )
 }
 
+/**
+ * Method to get the specific version name of the Android operating system
+ *
+ * @return the specific version name of the Android operating system as [String]
+ */
 private fun osNameByVersion(): String {
     val osVersion = SDK_INT
     if (osVersion <= 2)
