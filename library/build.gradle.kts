@@ -35,9 +35,16 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_18)
         }
     }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "Ametista-Engine"
+            isStatic = true
+        }
+    }
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         binaries.executable()
