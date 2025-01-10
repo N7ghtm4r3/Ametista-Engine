@@ -16,4 +16,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "Ametista-Engine"
 include(":library")
-include("extractor")

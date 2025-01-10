@@ -17,7 +17,7 @@ plugins {
 }
 
 group = "com.tecknobit.ametistaengine"
-version = "1.0.0"
+version = "1.0.1"
 
 kotlin {
     jvm {
@@ -72,6 +72,7 @@ kotlin {
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.napier)
                 implementation(libs.kotlinx.datetime)
+                implementation(libs.equinox.core)
             }
         }
         val jvmMain by getting {
@@ -112,7 +113,7 @@ mavenPublishing {
     coordinates(
         groupId = "io.github.n7ghtm4r3",
         artifactId = "Ametista-Engine",
-        version = "1.0.0"
+        version = "1.0.1"
     )
     pom {
         name.set("Ametista-Engine")
@@ -169,6 +170,6 @@ tasks.dokkaHtml {
     }
     pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
         customAssets = listOf(file("../docs/logo-icon.svg"))
-        footerMessage = "(c) 2024 Tecknobit"
+        footerMessage = "(c) 2025 Tecknobit"
     }
 }
