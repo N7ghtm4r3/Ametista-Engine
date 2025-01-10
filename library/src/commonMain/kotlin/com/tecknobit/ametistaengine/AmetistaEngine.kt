@@ -9,7 +9,6 @@ import com.tecknobit.ametistaengine.deviceinfo.provideDeviceInfo
 import com.tecknobit.ametistaengine.utils.EngineRequester
 import com.tecknobit.ametistaengine.utils.catchIssue
 import com.tecknobit.ametistaengine.utils.currentPlatform
-import io.ktor.client.request.*
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
@@ -24,6 +23,8 @@ import kotlinx.serialization.json.Json
 /**
  * The **AmetistaEngine** class is the core component of the Ametista system.
  * It collects performance data and tracks issues to send to your backend instance for analysis
+ *
+ * @param platform The platform from the stats collected and the issues caught are sent
  *
  * @author N7ghtm4r3 - Tecknobit
  */
@@ -101,6 +102,9 @@ class AmetistaEngine private constructor(
      */
     private val deviceInfo: DeviceInfo = provideDeviceInfo()
 
+    /**
+     * **engineRequester** -> the requester used to send the statistics to the backend
+     */
     private lateinit var engineRequester: EngineRequester
 
     /**

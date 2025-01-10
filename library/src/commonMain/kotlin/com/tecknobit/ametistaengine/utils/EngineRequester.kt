@@ -25,8 +25,17 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
 /**
- * **debugMode** -> whether the Engine must send the requests but the server must not collect as real, this is the
- * use-case of a not-production environment
+ * The **EngineRequester** is used to send the data collected and tracked issues to your backend instance for analysis
+ *
+ * @param host The host address where send the stats and performance data collected
+ * @param debugMode Whether the Engine must send the requests but the server must not collect as real, this is the
+ *  use-case of a not-production environment
+ * @param byPassSSLValidation Whether bypass the **SSL** certificates validation, this for example
+ * @param serverSecret The server secret value used as authentication method to validate the requests of the Engine
+ * @param appVersion The current application version managed by the Engine
+ * @param platform The platform from the stats collected and the issues caught are sent
+ *
+ * @author N7ghtm4r3 - Tecknobit
  */
 internal class EngineRequester(
     host: String,
@@ -42,17 +51,31 @@ internal class EngineRequester(
     connectionErrorMessage = "",
 ) {
 
+    /**
+     * `engineScope` is used to send the request to the backend
+     */
     private val engineScope = CoroutineScope(Dispatchers.Default)
 
+    /**
+     * `headers` of the requests
+     */
     private val headers = buildMap {
         put(SERVER_SECRET_KEY, serverSecret)
     }
 
+    /**
+     * `defQueryParameters` the default query parameters to use in the requests
+     */
     private val defQueryParameters = buildJsonObject {
         put(PLATFORM_KEY, Json.parseToJsonElement(platform.name))
         put(IS_DEBUG_MODE_KEY, debugMode)
     }
 
+    /**
+     * Method to send the request to connect the platform where the application is currently running.
+     *
+     * Look at the documentation [here](https://github.com/N7ghtm4r3/Ametista-Engine?tab=readme-ov-file#connection-procedure)
+     */
     fun connectPlatform() {
         engineScope.launch {
             execPut(
@@ -63,6 +86,12 @@ internal class EngineRequester(
         }
     }
 
+    /**
+     * Method to  send the request to notify the application launch and send the related value to the server.
+     *
+     * @param initializationTimestamp The current timestamp when the engine has been initialized invoking
+     * the [com.tecknobit.ametistaengine.AmetistaEngine.intake] method
+     */
     fun notifyAppLaunch(
         initializationTimestamp: Long,
     ) {
@@ -84,6 +113,11 @@ internal class EngineRequester(
         }
     }
 
+    /**
+     * Method to send the request to count the network requests sent by the application
+     *
+     * Look at the documentation [here](https://github.com/N7ghtm4r3/Ametista-Engine?tab=readme-ov-file#network-requests-count-if-needed)
+     */
     fun notifyNetworkRequest() {
         val query = mergeExtraQueryParameters(
             keys = listOf(APP_VERSION_KEY, PERFORMANCE_ANALYTIC_TYPE_KEY),
@@ -98,6 +132,12 @@ internal class EngineRequester(
         }
     }
 
+    /**
+     * Method to send the request to notify crash report of an issue occurred during the runtime of the application
+     *
+     * @param issue Details to create the report
+     * @param deviceInfo The current device information
+     */
     fun notifyIssue(
         issue: String,
         deviceInfo: DeviceInfo,
@@ -120,6 +160,14 @@ internal class EngineRequester(
         }
     }
 
+    /**
+     * Method to merge extra query parameters for a request additive of the [defQueryParameters]
+     *
+     * @param keys The keys of the parameters to add
+     * @param values The values of the query parameter to apply
+     *
+     * @return the complete query for the request as [JsonObject]
+     */
     private fun mergeExtraQueryParameters(
         keys: List<String>,
         values: List<String>,
