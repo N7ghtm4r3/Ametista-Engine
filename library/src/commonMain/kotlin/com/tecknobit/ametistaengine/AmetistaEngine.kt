@@ -135,9 +135,6 @@ class AmetistaEngine private constructor(
      */
     private var configurationLoaded: Boolean = false
 
-
-    private var debugMode: Boolean = false
-
     /**
      * Method to initialize the Engine with the configuration data and the flags available
      *
@@ -171,13 +168,13 @@ class AmetistaEngine private constructor(
             throw IllegalArgumentException("To correctly start the engine you must invoke AmetistaEngine.intake method first")
         try {
             loadConfiguration(
-                configData = configData
+                configData = configData,
+                debugMode = debugMode
             )
             notifyAppLaunch()
         } catch (e: Exception) {
             throwInvalidConfiguration()
         }
-        this.debugMode = debugMode
     }
 
     /**
@@ -185,9 +182,12 @@ class AmetistaEngine private constructor(
      * and initializing the [host], [serverSecret], [applicationId] and [appVersion] instances
      *
      * @param configData the data from instantiate the [EngineConfiguration]
+     * @param debugMode concerns whether the Engine must send the requests but the server must not collect as real, this is the
+     * use-case of a not-production environment
      */
     private fun loadConfiguration(
-        configData: ByteArray
+        configData: ByteArray,
+        debugMode: Boolean,
     ) {
         val configuration: EngineConfiguration = Json.decodeFromString(configData.decodeToString())
         appVersion = getAppVersion(

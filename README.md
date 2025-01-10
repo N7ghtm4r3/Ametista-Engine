@@ -129,10 +129,10 @@ configuration file:
   "host": "your_host_address",
   "server_secret": "your_server_secret",
   "application_id": "your_application_id",
-  "bypass_ssl_validation": "true [default false]",
   // whether bypass the SSL certificates validation, this for example when is a self-signed the certificate USE WITH CAUTION
-  "app_version": "X.Y.Z",
+  "bypass_ssl_validation": "true [default false]",
   // required if any specific versions are not specified
+  "app_version": "X.Y.Z",
   // general version to use if the specific one for a target is not specified
   "android": {
     // not required

@@ -19,7 +19,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
-import kotlinx.serialization.json.*
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
 
 /**
  * **debugMode** -> whether the Engine must send the requests but the server must not collect as real, this is the
@@ -46,7 +49,7 @@ internal class EngineRequester(
     }
 
     private val defQueryParameters = buildJsonObject {
-        put(PLATFORM_KEY, platform.name)
+        put(PLATFORM_KEY, Json.parseToJsonElement(platform.name))
         put(IS_DEBUG_MODE_KEY, debugMode)
     }
 
@@ -66,7 +69,7 @@ internal class EngineRequester(
         val launchTime = Clock.System.now().toEpochMilliseconds() - initializationTimestamp
         val query = mergeExtraQueryParameters(
             keys = listOf(APP_VERSION_KEY, PERFORMANCE_ANALYTIC_TYPE_KEY),
-            values = listOf(appVersion, LAUNCH_TIME)
+            values = listOf(appVersion, LAUNCH_TIME.name)
         )
         val payload = buildJsonObject {
             put(LAUNCH_TIME_KEY, launchTime)
@@ -84,7 +87,7 @@ internal class EngineRequester(
     fun notifyNetworkRequest() {
         val query = mergeExtraQueryParameters(
             keys = listOf(APP_VERSION_KEY, PERFORMANCE_ANALYTIC_TYPE_KEY),
-            values = listOf(appVersion, NETWORK_REQUESTS)
+            values = listOf(appVersion, NETWORK_REQUESTS.name)
         )
         engineScope.launch {
             execPut(
@@ -119,11 +122,11 @@ internal class EngineRequester(
 
     private fun mergeExtraQueryParameters(
         keys: List<String>,
-        values: List<*>,
+        values: List<String>,
     ): JsonObject {
         val defMap = defQueryParameters.toMutableMap()
         keys.forEachIndexed { index, key ->
-            defMap[key] = Json.encodeToJsonElement(values[index])
+            defMap[key] = Json.decodeFromString(values[index])
         }
         return JsonObject(defMap)
     }
