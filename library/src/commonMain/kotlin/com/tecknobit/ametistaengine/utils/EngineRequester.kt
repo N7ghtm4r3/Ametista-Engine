@@ -48,7 +48,7 @@ internal class EngineRequester(
     host = host,
     debugMode = debugMode,
     byPassSSLValidation = byPassSSLValidation,
-    connectionErrorMessage = "",
+    connectionErrorMessage = "Something goes wrong",
 ) {
 
     /**

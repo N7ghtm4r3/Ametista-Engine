@@ -173,7 +173,24 @@ The first step to start the engine is intake it in each main of your application
 
 #### Android
 
-Intake the engine in your **MainActivity**
+- Set up the internet permission in your `AndroidManifest.xml`
+
+```xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- ADD THIS PERMISSION -->
+  <uses-permission android:name="android.permission.INTERNET"/>
+
+  <application>
+    ...
+  </application>
+
+</manifest>
+```
+
+- Intake the engine in your **MainActivity**
 
 ```kotlin
 class MainActivity : ComponentActivity() {
