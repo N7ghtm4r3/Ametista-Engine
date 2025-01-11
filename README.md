@@ -18,11 +18,6 @@ This repository contains the engine of **Ametista**, so if you want to customize
 it and work on it, if there are any errors, fixes to do or some idea to upgrade this project, please
 open a ticket or contact us to talk about, thanks and good use!
 
-## 🛠 Skills
-
-- Java
-- Kotlin
-
 ## Architecture
 
 ### Engine
@@ -401,10 +396,6 @@ Once the platform has been connected, you can remove the method invocation for t
 If you need to inform the users about the tracking activity or performance monitoring of the Ametista-Engine you can
 use this [template](https://github.com/N7ghtm4r3/Ametista-Engine/blob/main/POLICY.md) and customize it as you need
 
-## Authors
-
-- [@N7ghtm4r3](https://www.github.com/N7ghtm4r3)
-
 ## Support
 
 If you need help using the library or encounter any problems or bugs, please contact us via the
@@ -414,10 +405,6 @@ following links:
 - Support via <a href="https://github.com/N7ghtm4r3/Ametista-Engine/issues/new">GitHub</a>
 
 Thank you for your help!
-
-## Badges
-
-[![](https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/developer?id=Tecknobit)
 
 ## Donations
 
