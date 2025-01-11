@@ -19,556 +19,282 @@
         }
     }
     </script>
-    <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js"
-            async="async"></script>
-    <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
-    <link href="../../../styles/style.css" rel="Stylesheet">
-    <link href="../../../styles/main.css" rel="Stylesheet">
-    <link href="../../../styles/prism.css" rel="Stylesheet">
-    <link href="../../../styles/logo-styles.css" rel="Stylesheet">
-    <link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
-    <script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
-    <script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
-    <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
-    <script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
-    <script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
-    <script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
-    <link href="../../../images/logo-icon.svg">
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+<link href="../../../images/logo-icon.svg">
 </head>
 <body>
-<div class="root">
-    <nav class="navigation" id="navigation-wrapper">
-        <div class="navigation--inner">
-            <div class="navigation-title">
-                <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
-                <div class="library-name">
-                    <a class="library-name--link" href="../../../index.html">
-                        Ametista-Engine
-                    </a>
-                </div>
-                <div class="library-version">
-                    1.0.0
-                </div>
-            </div>
-            <div class="filter-section" id="filter-section">
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+            <a class="library-name--link" href="../../../index.html">
+                    Ametista-Engine
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+1.0.1        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
                 <button class="platform-tag platform-selector common-like" data-active=""
-                        data-filter=":library:dokkaHtml/commonMain">common
-                </button>
+                        data-filter=":library:dokkaHtml/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":library:dokkaHtml/commonMain"
+                                       data-filter=":library:dokkaHtml/commonMain"/>
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
         </div>
-        <div class="navigation-controls">
-            <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">
-                switch theme
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
             </button>
-            <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
                 API
             </div>
         </div>
     </nav>
-    <div id="container">
-        <div class="sidebar" id="leftColumn">
-            <div class="sidebar--inner" id="sideMenu"></div>
-        </div>
-        <div id="main">
-            <div class="main-content" data-page-type="classlike" id="content"
-                 pageIds="Ametista-Engine::com.tecknobit.ametistaengine.deviceinfo/WebDeviceInfo///PointingToDeclaration//1327329691">
-                <div class="breadcrumbs"><a href="../../../index.html">Ametista-Engine</a><span
-                        class="delimiter">/</span><a
-                        href="../index.html">com.tecknobit.ametistaengine.deviceinfo</a><span class="delimiter">/</span><span
-                        class="current">WebDeviceInfo</span></div>
-                <div class="cover ">
-                    <h1 class="cover"><span>Web</span>
-                        <wbr></wbr>
-                        <span>Device</span>
-                        <wbr></wbr>
-                        <span><span>Info</span></span></h1>
-                    <div class="platform-hinted " data-platform-hinted="data-platform-hinted">
-                        <div class="content sourceset-dependent-content" data-active=""
-                             data-togglable=":library:dokkaHtml/commonMain">
-                            <div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">WebDeviceInfo</a><span
-                                    class="token punctuation">(</span><span class="parameters "><span
-                                    class="parameter "><span class="token keyword">val </span>uniqueIdentifier<span
-                                    class="token operator">: </span><a
-                                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                    class="token punctuation">, </span></span><span class="parameter "><span
-                                    class="token keyword">val </span>brand<span class="token operator">: </span><a
-                                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                    class="token punctuation">, </span></span><span class="parameter "><span
-                                    class="token keyword">val </span>model<span class="token operator">: </span><a
-                                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                    class="token punctuation">, </span></span><span class="parameter "><span
-                                    class="token keyword">val </span>os<span class="token operator">: </span><a
-                                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                    class="token punctuation">, </span></span><span class="parameter "><span
-                                    class="token keyword">val </span>osVersion<span class="token operator">: </span><a
-                                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                    class="token punctuation">, </span></span><span class="parameter "><span
-                                    class="token keyword">val </span>browser<span class="token operator">: </span><a
-                                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                    class="token punctuation">, </span></span><span class="parameter "><span
-                                    class="token keyword">val </span>browserVersion<span
-                                    class="token operator">: </span><a
-                                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span
-                                    class="token punctuation">)</span> : <a
-                                    href="../-device-info/index.html">DeviceInfo</a></div>
-                            <p class="paragraph">The <strong>WebDeviceInfo</strong> class represents the information
-                                about the current browser (and related device) where the application is running</p><span
-                                class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">N7ghtm4r3 - Tecknobit</p></span>
-                            <h4 class="">Parameters</h4>
-                            <div class="table">
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex"><div><u><span>unique</span><wbr></wbr><span><span>Identifier</span></span></u></div></span>
-                                        </div>
-                                        <div>
-                                            <div class="title"><p class="paragraph">The unique identifier of the
-                                                user</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex"><div><u><span><span>brand</span></span></u></div></span>
-                                        </div>
-                                        <div>
-                                            <div class="title"><p class="paragraph">The brand of the device</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex"><div><u><span><span>model</span></span></u></div></span>
-                                        </div>
-                                        <div>
-                                            <div class="title"><p class="paragraph">The model of the device</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex"><div><u><span><span>os</span></span></u></div></span>
-                                        </div>
-                                        <div>
-                                            <div class="title"><p class="paragraph">The operating system of the
-                                                device</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex"><div><u><span>os</span><wbr></wbr><span><span>Version</span></span></u></div></span>
-                                        </div>
-                                        <div>
-                                            <div class="title"><p class="paragraph">The operating system version of the
-                                                device</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex"><div><u><span><span>browser</span></span></u></div></span>
-                                        </div>
-                                        <div>
-                                            <div class="title"><p class="paragraph">The browser where the web-app is
-                                                running</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex"><div><u><span>browser</span><wbr></wbr><span><span>Version</span></span></u></div></span>
-                                        </div>
-                                        <div>
-                                            <div class="title"><p class="paragraph">The version of the browser</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <h4 class="">See also</h4>
-                            <div class="table">
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex"><div><a
-                                                href="../../com.tecknobit.ametistaengine.configuration.targets/-target-config/index.html"><span>Target</span><wbr></wbr><span><span>Config</span></span></a></div></span>
-                                        </div>
-                                        <div></div>
-                                    </div>
-                                </div>
-                            </div>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                        data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    Ametista-Engine
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
                         </div>
-                    </div>
-                </div>
-                <div class="tabbedcontent">
-                    <div class="tabs-section" tabs-section="tabs-section">
-                        <button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">
-                            Members
-                        </button>
-                    </div>
-                    <div class="tabs-section-body">
-                        <div data-togglable="CONSTRUCTOR">
-                            <h2 class="">Constructors</h2>
-                            <div class="table"><a data-name="1581151277%2FConstructors%2F1327329691"
-                                                  anchor-label="WebDeviceInfo"
-                                                  id="1581151277%2FConstructors%2F1327329691"
-                                                  data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-togglable="CONSTRUCTOR"
-                                     data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="-web-device-info.html"><span>Web</span><wbr></wbr><span>Device</span><wbr></wbr><span><span>Info</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1581151277%2FConstructors%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace"><span class="token keyword">constructor</span><span
-                                                                class="token punctuation">(</span><span
-                                                                class="parameters "><span class="parameter ">uniqueIdentifier<span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                                                class="token punctuation">, </span></span><span
-                                                                class="parameter ">brand<span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                                                class="token punctuation">, </span></span><span
-                                                                class="parameter ">model<span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                                                class="token punctuation">, </span></span><span
-                                                                class="parameter ">os<span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                                                class="token punctuation">, </span></span><span
-                                                                class="parameter ">osVersion<span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                                                class="token punctuation">, </span></span><span
-                                                                class="parameter ">browser<span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                                                class="token punctuation">, </span></span><span
-                                                                class="parameter ">browserVersion<span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span
-                                                                class="token punctuation">)</span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div data-togglable="TYPE">
-                            <h2 class="">Types</h2>
-                            <div class="table"><a data-name="1229360212%2FClasslikes%2F1327329691"
-                                                  anchor-label="Companion" id="1229360212%2FClasslikes%2F1327329691"
-                                                  data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1229360212%2FClasslikes%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace"><span
-                                                                class="token keyword">object </span><a
-                                                                href="-companion/index.html">Companion</a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div data-togglable="PROPERTY">
-                            <h2 class="">Properties</h2>
-                            <div class="table"><a data-name="505676552%2FProperties%2F1327329691" anchor-label="brand"
-                                                  id="505676552%2FProperties%2F1327329691"
-                                                  data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="../-device-info/brand.html"><span><span>brand</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="505676552%2FProperties%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace"><span
-                                                                class="token keyword">val </span><a
-                                                                href="../-device-info/brand.html">brand</a><span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a data-name="-1663860507%2FProperties%2F1327329691" anchor-label="browser"
-                                   id="-1663860507%2FProperties%2F1327329691"
-                                   data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="browser.html"><span><span>browser</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1663860507%2FProperties%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace"><span
-                                                                class="token keyword">val </span><a href="browser.html">browser</a><span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a data-name="-863980579%2FProperties%2F1327329691" anchor-label="browserVersion"
-                                   id="-863980579%2FProperties%2F1327329691"
-                                   data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="browser-version.html"><span>browser</span><wbr></wbr><span><span>Version</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-863980579%2FProperties%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace"><span
-                                                                class="token keyword">val </span><a
-                                                                href="browser-version.html">browserVersion</a><span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a data-name="-2029793882%2FProperties%2F1327329691" anchor-label="model"
-                                   id="-2029793882%2FProperties%2F1327329691"
-                                   data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="../-device-info/model.html"><span><span>model</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2029793882%2FProperties%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace"><span
-                                                                class="token keyword">val </span><a
-                                                                href="../-device-info/model.html">model</a><span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a data-name="-271565145%2FProperties%2F1327329691" anchor-label="os"
-                                   id="-271565145%2FProperties%2F1327329691"
-                                   data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="../-device-info/os.html"><span><span>os</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-271565145%2FProperties%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace"><span
-                                                                class="token keyword">val </span><a
-                                                                href="../-device-info/os.html">os</a><span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a data-name="1556699099%2FProperties%2F1327329691" anchor-label="osVersion"
-                                   id="1556699099%2FProperties%2F1327329691"
-                                   data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="../-device-info/os-version.html"><span>os</span><wbr></wbr><span><span>Version</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1556699099%2FProperties%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace"><span
-                                                                class="token keyword">val </span><a
-                                                                href="../-device-info/os-version.html">osVersion</a><span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a data-name="-525903503%2FProperties%2F1327329691" anchor-label="uniqueIdentifier"
-                                   id="-525903503%2FProperties%2F1327329691"
-                                   data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="../-device-info/unique-identifier.html"><span>unique</span><wbr></wbr><span><span>Identifier</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-525903503%2FProperties%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace"><span
-                                                                class="token keyword">val </span><a
-                                                                href="../-device-info/unique-identifier.html">uniqueIdentifier</a><span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div data-togglable="FUNCTION">
-                            <h2 class="">Functions</h2>
-                            <div class="table"><a data-name="428899290%2FFunctions%2F1327329691"
-                                                  anchor-label="toPayload" id="428899290%2FFunctions%2F1327329691"
-                                                  data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="to-payload.html"><span>to</span><wbr></wbr><span><span>Payload</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="428899290%2FFunctions%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace"><span
-                                                                class="token keyword">open </span><span
-                                                                class="token keyword">override </span><span
-                                                                class="token keyword">fun </span><a
-                                                                href="to-payload.html"><span class="token function">toPayload</span></a><span
-                                                                class="token punctuation">(</span><span
-                                                                class="token punctuation">)</span><span
-                                                                class="token operator">: </span><span
-                                                                data-unresolved-link="kotlinx.serialization.json/JsonObject///PointingToDeclaration/">JsonObject</span>
-                                                        </div>
-                                                        <div class="brief "><p class="paragraph">Method to transform the
-                                                            device information as payload for the requests</p></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
                 </div>
             </div>
-            <div class="footer">
-                <span class="go-to-top-icon"><a href="#content"
-                                                id="go-to-top-link"></a></span><span>(c) 2024 Tecknobit</span><span
-                    class="pull-right"><span>Generated by </span><a
-                    href="https://github.com/Kotlin/dokka"><span>dokka</span><span
-                    class="padded-icon"></span></a></span>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="Ametista-Engine::com.tecknobit.ametistaengine.deviceinfo/WebDeviceInfo///PointingToDeclaration//1327329691">
+  <div class="breadcrumbs"><a href="../../../index.html">Ametista-Engine</a><span class="delimiter">/</span><a href="../index.html">com.tecknobit.ametistaengine.deviceinfo</a><span class="delimiter">/</span><span class="current">WebDeviceInfo</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Web</span><wbr></wbr><span>Device</span><wbr></wbr><span><span>Info</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">WebDeviceInfo</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>uniqueIdentifier<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>brand<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>model<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>os<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>osVersion<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>browser<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>browserVersion<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span> : <a href="../-device-info/index.html">DeviceInfo</a></div><p class="paragraph">The <strong>WebDeviceInfo</strong> class represents the information about the current browser (and related device) where the application is running</p><span class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">N7ghtm4r3 - Tecknobit</p></span><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>unique</span><wbr></wbr><span><span>Identifier</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The unique identifier of the user</p></div></div></div></div><div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>brand</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The brand of the device</p></div></div></div></div><div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>model</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The model of the device</p></div></div></div></div><div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>os</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The operating system of the device</p></div></div></div></div><div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>os</span><wbr></wbr><span><span>Version</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The operating system version of the device</p></div></div></div></div><div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>browser</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The browser where the web-app is running</p></div></div></div></div><div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>browser</span><wbr></wbr><span><span>Version</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The version of the browser</p></div></div></div></div></div><h4 class="">See also</h4><div class="table"><div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../com.tecknobit.ametistaengine.configuration.targets/-target-config/index.html"><span>Target</span><wbr></wbr><span><span>Config</span></span></a></div></span></div><div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="1581151277%2FConstructors%2F1327329691" anchor-label="WebDeviceInfo" id="1581151277%2FConstructors%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-web-device-info.html"><span>Web</span><wbr></wbr><span>Device</span><wbr></wbr><span><span>Info</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1581151277%2FConstructors%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">uniqueIdentifier<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">brand<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">model<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">os<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">osVersion<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">browser<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">browserVersion<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="1229360212%2FClasslikes%2F1327329691" anchor-label="Companion" id="1229360212%2FClasslikes%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1229360212%2FClasslikes%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="505676552%2FProperties%2F1327329691" anchor-label="brand" id="505676552%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-device-info/brand.html"><span><span>brand</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="505676552%2FProperties%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-device-info/brand.html">brand</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1663860507%2FProperties%2F1327329691" anchor-label="browser" id="-1663860507%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="browser.html"><span><span>browser</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1663860507%2FProperties%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="browser.html">browser</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-863980579%2FProperties%2F1327329691" anchor-label="browserVersion" id="-863980579%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="browser-version.html"><span>browser</span><wbr></wbr><span><span>Version</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-863980579%2FProperties%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="browser-version.html">browserVersion</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2029793882%2FProperties%2F1327329691" anchor-label="model" id="-2029793882%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-device-info/model.html"><span><span>model</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2029793882%2FProperties%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-device-info/model.html">model</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-271565145%2FProperties%2F1327329691" anchor-label="os" id="-271565145%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-device-info/os.html"><span><span>os</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-271565145%2FProperties%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-device-info/os.html">os</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1556699099%2FProperties%2F1327329691" anchor-label="osVersion" id="1556699099%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-device-info/os-version.html"><span>os</span><wbr></wbr><span><span>Version</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1556699099%2FProperties%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-device-info/os-version.html">osVersion</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-525903503%2FProperties%2F1327329691" anchor-label="uniqueIdentifier" id="-525903503%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-device-info/unique-identifier.html"><span>unique</span><wbr></wbr><span><span>Identifier</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-525903503%2FProperties%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-device-info/unique-identifier.html">uniqueIdentifier</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="428899290%2FFunctions%2F1327329691" anchor-label="toPayload" id="428899290%2FFunctions%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-payload.html"><span>to</span><wbr></wbr><span><span>Payload</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="428899290%2FFunctions%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="to-payload.html"><span class="token function">toPayload</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization.json/JsonObject///PointingToDeclaration/">JsonObject</span></div><div class="brief "><p class="paragraph">Method to transform the device information as payload for the requests</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>(c) 2025 Tecknobit</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>

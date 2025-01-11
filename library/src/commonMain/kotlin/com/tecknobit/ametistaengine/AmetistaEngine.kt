@@ -1,33 +1,14 @@
 package com.tecknobit.ametistaengine
 
 import com.tecknobit.ametistaengine.configuration.EngineConfiguration
-import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.APP_VERSION_KEY
 import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.ENDPOINT_URL
-import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.ISSUES_ENDPOINT
-import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.ISSUE_KEY
-import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.IS_DEBUG_MODE_KEY
-import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.LAUNCH_TIME_KEY
-import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.PERFORMANCE_ANALYTICS_ENDPOINT
-import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.PERFORMANCE_ANALYTIC_TYPE_KEY
-import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.PLATFORM_KEY
-import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.SERVER_SECRET_KEY
-import com.tecknobit.ametistaengine.configuration.EngineConfiguration.PerformanceAnalyticType.LAUNCH_TIME
-import com.tecknobit.ametistaengine.configuration.EngineConfiguration.PerformanceAnalyticType.NETWORK_REQUESTS
 import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Platform
 import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Platform.ANDROID
 import com.tecknobit.ametistaengine.deviceinfo.DeviceInfo
-import com.tecknobit.ametistaengine.deviceinfo.DeviceInfo.Companion.DEVICE_KEY
 import com.tecknobit.ametistaengine.deviceinfo.provideDeviceInfo
+import com.tecknobit.ametistaengine.utils.EngineRequester
 import com.tecknobit.ametistaengine.utils.catchIssue
 import com.tecknobit.ametistaengine.utils.currentPlatform
-import io.github.aakira.napier.DebugAntilog
-import io.github.aakira.napier.Napier
-import io.ktor.client.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import io.ktor.http.*
-import io.ktor.http.HttpMethod.Companion.Put
-import io.ktor.http.HttpStatusCode.Companion.OK
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
@@ -37,11 +18,13 @@ import kotlinx.io.buffered
 import kotlinx.io.files.Path
 import kotlinx.io.files.SystemFileSystem
 import kotlinx.io.readByteArray
-import kotlinx.serialization.json.*
+import kotlinx.serialization.json.Json
 
 /**
  * The **AmetistaEngine** class is the core component of the Ametista system.
  * It collects performance data and tracks issues to send to your backend instance for analysis
+ *
+ * @param platform The platform from the stats collected and the issues caught are sent
  *
  * @author N7ghtm4r3 - Tecknobit
  */
@@ -120,14 +103,9 @@ class AmetistaEngine private constructor(
     private val deviceInfo: DeviceInfo = provideDeviceInfo()
 
     /**
-     * **ktorClient** -> the HTTP client used to send the stats and the performance data
+     * **engineRequester** -> the requester used to send the statistics to the backend
      */
-    private val ktorClient = HttpClient()
-
-    /**
-     * **requestsMutex** -> the mutex used to synchronize the requests to avoid the interleaving between each request
-     */
-    private val requestsMutex = Mutex()
+    private lateinit var engineRequester: EngineRequester
 
     /**
      * **configurationMutex** -> the mutex used to wait the configuration loaded before execute any operation
@@ -162,33 +140,19 @@ class AmetistaEngine private constructor(
     private var configurationLoaded: Boolean = false
 
     /**
-     * **loggingEnabled** -> whether the logging is enabled
-     */
-    private var loggingEnabled: Boolean = false
-
-    /**
-     * **debugMode** -> whether the Engine must send the requests but the server must not collect as real, this is the
-     * use-case of a not-production environment
-     */
-    private var debugMode: Boolean = false
-
-    /**
      * Method to initialize the Engine with the configuration data and the flags available
      *
      * @param configPath is the configuration path where the config file is located
-     * @param loggingEnabled concerns whether log the operation of the Engine
      * @param debugMode concerns whether the Engine must send the requests but the server must not collect as real, this is the
      * use-case of a not-production environment
      */
     fun fireUp(
         configPath: String,
-        loggingEnabled: Boolean = false,
         debugMode: Boolean
     ) {
         val configData = SystemFileSystem.source(Path(configPath)).buffered().readByteArray()
         fireUp(
             configData = configData,
-            loggingEnabled = loggingEnabled,
             debugMode = debugMode
         )
     }
@@ -197,29 +161,24 @@ class AmetistaEngine private constructor(
      * Method to initialize the Engine with the configuration data and the flags available
      *
      * @param configData are the config data as [ByteArray]
-     * @param loggingEnabled concerns whether log the operation of the Engine
      * @param debugMode concerns whether the Engine must send the requests but the server must not collect as real, this is the
      * use-case of a not-production environment
      */
     fun fireUp(
         configData: ByteArray,
-        loggingEnabled: Boolean = false,
         debugMode: Boolean
     ) {
         if (initializationTimestamp < 0)
             throw IllegalArgumentException("To correctly start the engine you must invoke AmetistaEngine.intake method first")
         try {
             loadConfiguration(
-                configData = configData
-            )
-            setLogging(
-                enabled = loggingEnabled
+                configData = configData,
+                debugMode = debugMode
             )
             notifyAppLaunch()
         } catch (e: Exception) {
             throwInvalidConfiguration()
         }
-        this.debugMode = debugMode
     }
 
     /**
@@ -227,9 +186,12 @@ class AmetistaEngine private constructor(
      * and initializing the [host], [serverSecret], [applicationId] and [appVersion] instances
      *
      * @param configData the data from instantiate the [EngineConfiguration]
+     * @param debugMode concerns whether the Engine must send the requests but the server must not collect as real, this is the
+     * use-case of a not-production environment
      */
     private fun loadConfiguration(
-        configData: ByteArray
+        configData: ByteArray,
+        debugMode: Boolean,
     ) {
         val configuration: EngineConfiguration = Json.decodeFromString(configData.decodeToString())
         appVersion = getAppVersion(
@@ -243,6 +205,14 @@ class AmetistaEngine private constructor(
         configurationLoaded = isValidConfiguration()
         if (!configurationLoaded)
             throwInvalidConfiguration()
+        engineRequester = EngineRequester(
+            host = "$host$ENDPOINT_URL$applicationId",
+            debugMode = debugMode,
+            byPassSSLValidation = configuration.byPassSslValidation,
+            serverSecret = serverSecret,
+            appVersion = appVersion!!,
+            platform = platform
+        )
     }
 
     /**
@@ -295,19 +265,6 @@ class AmetistaEngine private constructor(
     }
 
     /**
-     * Method to set the logging
-     *
-     * @param enabled whether enable or not the logging
-     */
-    private fun setLogging(
-        enabled: Boolean
-    ) {
-        loggingEnabled = enabled
-        if (enabled)
-            Napier.base(DebugAntilog())
-    }
-
-    /**
      * Method to execute an action after the configuration has been loaded. The [configurationMutex] synchronize
      * the access locking it waiting the configuration loading
      *
@@ -329,9 +286,8 @@ class AmetistaEngine private constructor(
      * Look at the documentation [here](https://github.com/N7ghtm4r3/Ametista-Engine?tab=readme-ov-file#connection-procedure)
      */
     fun connectPlatform() {
-        sendRequest(
-            method = Put
-        )
+        checkConfigurationValidity()
+        engineRequester.connectPlatform()
     }
 
     /**
@@ -341,17 +297,9 @@ class AmetistaEngine private constructor(
      */
     private fun notifyAppLaunch() {
         configurationMutex.unlock()
-        val launchTime = Clock.System.now().toEpochMilliseconds() - initializationTimestamp
-        sendRequest(
-            method = Put,
-            endpoint = PERFORMANCE_ANALYTICS_ENDPOINT,
-            parameters = mapOf(
-                APP_VERSION_KEY to appVersion!!,
-                PERFORMANCE_ANALYTIC_TYPE_KEY to LAUNCH_TIME
-            ),
-            payload = buildJsonObject {
-                put(LAUNCH_TIME_KEY, launchTime)
-            }
+        checkConfigurationValidity()
+        engineRequester.notifyAppLaunch(
+            initializationTimestamp = initializationTimestamp
         )
     }
 
@@ -361,14 +309,8 @@ class AmetistaEngine private constructor(
      * Look at the documentation [here](https://github.com/N7ghtm4r3/Ametista-Engine?tab=readme-ov-file#network-requests-count-if-needed)
      */
     fun notifyNetworkRequest() {
-        sendRequest(
-            method = Put,
-            endpoint = PERFORMANCE_ANALYTICS_ENDPOINT,
-            parameters = mapOf(
-                APP_VERSION_KEY to appVersion!!,
-                PERFORMANCE_ANALYTIC_TYPE_KEY to NETWORK_REQUESTS
-            )
-        )
+        checkConfigurationValidity()
+        engineRequester.notifyNetworkRequest()
     }
 
     /**
@@ -392,87 +334,11 @@ class AmetistaEngine private constructor(
     fun notifyIssue(
         issue: String
     ) {
-        sendRequest(
-            method = Put,
-            endpoint = ISSUES_ENDPOINT,
-            parameters = mapOf(
-                APP_VERSION_KEY to appVersion!!
-            ),
-            payload = buildJsonObject {
-                put(ISSUE_KEY, issue)
-                put(DEVICE_KEY, deviceInfo.toPayload())
-            }
-        )
-    }
-
-    /**
-     * Method to send a request
-     *
-     * @param method of the request
-     * @param endpoint of the request
-     * @param parameters of the request
-     * @param payload of the request
-     */
-    private fun sendRequest(
-        method: HttpMethod,
-        endpoint: String = "",
-        parameters: Map<String, Any> = emptyMap(),
-        payload: JsonObject? = null
-    ) {
         checkConfigurationValidity()
-        MainScope().launch {
-            requestsMutex.withLock {
-                val response = ktorClient.request(
-                    urlString = "$host$ENDPOINT_URL$applicationId$endpoint"
-                ) {
-                    this.method = method
-                    url {
-                        parameters {
-                            parameter(PLATFORM_KEY, platform)
-                            parameter(IS_DEBUG_MODE_KEY, debugMode)
-                            parameters.entries.forEach { parameter ->
-                                parameter(parameter.key, parameter.value)
-                            }
-                        }
-                        headers {
-                            append(SERVER_SECRET_KEY, serverSecret)
-                            payload?.let {
-                                append(HttpHeaders.ContentType, ContentType.Application.Json)
-                            }
-                        }
-                        payload?.let { payload ->
-                            setBody(payload.toString())
-                        }
-                    }
-                }
-                execRequest(
-                    response = response
-                )
-            }
-        }
-    }
-
-    /**
-     * Method to execute the request
-     *
-     * @param response object obtained in the [sendRequest] method
-     */
-    private suspend fun execRequest(
-        response: HttpResponse
-    ) {
-        if (loggingEnabled) {
-            val responseText = response.bodyAsText()
-            if (response.status == OK) {
-                val jResponse = Json.parseToJsonElement(responseText).jsonObject
-                val status = jResponse[STATUS_KEY]!!.jsonPrimitive.content
-                val data = jResponse[RESPONSE_KEY]!!.jsonPrimitive.content
-                if (status == REQUEST_FAILED)
-                    Napier.e(data)
-                else
-                    Napier.i(data)
-            } else
-                Napier.e(response.status.description)
-        }
+        engineRequester.notifyIssue(
+            issue = issue,
+            deviceInfo = deviceInfo
+        )
     }
 
     /**

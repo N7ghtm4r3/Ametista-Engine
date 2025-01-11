@@ -20,6 +20,7 @@ $dokka.location:com.tecknobit.ametistaengine.configuration////PointingToDeclarat
 $dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration.Companion///PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/-companion/index.html
 $dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration.Companion/APPLICATION_IDENTIFIER_KEY/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/-companion/-a-p-p-l-i-c-a-t-i-o-n_-i-d-e-n-t-i-f-i-e-r_-k-e-y.html
 $dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration.Companion/APP_VERSION_KEY/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/-companion/-a-p-p_-v-e-r-s-i-o-n_-k-e-y.html
+$dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration.Companion/BYPASS_SSL_VALIDATION_KEY/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/-companion/-b-y-p-a-s-s_-s-s-l_-v-a-l-i-d-a-t-i-o-n_-k-e-y.html
 $dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration.Companion/ENDPOINT_URL/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/-companion/-e-n-d-p-o-i-n-t_-u-r-l.html
 $dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration.Companion/ISSUES_ENDPOINT/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/-companion/-i-s-s-u-e-s_-e-n-d-p-o-i-n-t.html
 $dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration.Companion/ISSUE_KEY/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/-companion/-i-s-s-u-e_-k-e-y.html
@@ -48,10 +49,11 @@ $dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration.P
 $dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration.Platform/valueOf/#kotlin.String/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/-platform/value-of.html
 $dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration.Platform/values/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/-platform/values.html
 $dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration///PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/index.html
-$dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration/EngineConfiguration/#kotlin.String#kotlin.String#kotlin.String#kotlin.String?#com.tecknobit.ametistaengine.configuration.targets.AndroidConfig?#com.tecknobit.ametistaengine.configuration.targets.IosConfig?#com.tecknobit.ametistaengine.configuration.targets.DesktopConfig?#com.tecknobit.ametistaengine.configuration.targets.WebConfig?/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/-engine-configuration.html
+$dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration/EngineConfiguration/#kotlin.String#kotlin.String#kotlin.Boolean#kotlin.String#kotlin.String?#com.tecknobit.ametistaengine.configuration.targets.AndroidConfig?#com.tecknobit.ametistaengine.configuration.targets.IosConfig?#com.tecknobit.ametistaengine.configuration.targets.DesktopConfig?#com.tecknobit.ametistaengine.configuration.targets.WebConfig?/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/-engine-configuration.html
 $dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration/androidConfig/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/android-config.html
 $dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration/appVersion/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/app-version.html
 $dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration/applicationId/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/application-id.html
+$dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration/byPassSslValidation/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/by-pass-ssl-validation.html
 $dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration/desktopConfig/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/desktop-config.html
 $dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration/getTargetConfiguration/#com.tecknobit.ametistaengine.configuration.EngineConfiguration.Platform/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/get-target-configuration.html
 $dokka.location:com.tecknobit.ametistaengine.configuration/EngineConfiguration/host/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.configuration/-engine-configuration/host.html
@@ -131,6 +133,7 @@ $dokka.location:com.tecknobit.ametistaengine.utils////PointingToDeclaration/-am
 $dokka.location:com.tecknobit.ametistaengine.utils//UNCAUGHT_PROMISE_EXCEPTION_TYPE/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.utils/-u-n-c-a-u-g-h-t_-p-r-o-m-i-s-e_-e-x-c-e-p-t-i-o-n_-t-y-p-e.html
 $dokka.location:com.tecknobit.ametistaengine.utils//catchIssue/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.utils/catch-issue.html
 $dokka.location:com.tecknobit.ametistaengine.utils//currentPlatform/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.utils/current-platform.html
+$dokka.location:com.tecknobit.ametistaengine.utils//exceptionHandler/#platform.Foundation.NSException?/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.utils/exception-handler.html
 $dokka.location:com.tecknobit.ametistaengine.utils//sendIssueLocallyStored/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.utils/send-issue-locally-stored.html
 $dokka.location:com.tecknobit.ametistaengine.utils//storeIssueLocally/#kotlin.Throwable/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine.utils/store-issue-locally.html
 $dokka.location:com.tecknobit.ametistaengine////PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/index.html
@@ -153,33 +156,26 @@ $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/checkConfigurationVa
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/configurationLoaded/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/configuration-loaded.html
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/configurationMutex/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/configuration-mutex.html
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/connectPlatform/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/connect-platform.html
-$dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/debugMode/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/debug-mode.html
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/deviceInfo/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/device-info.html
+$dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/engineRequester/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/engine-requester.html
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/execAfterConfigurationLoaded/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/exec-after-configuration-loaded.html
-$dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/execRequest/#io.ktor.client.statement.HttpResponse/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/exec-request.html
-$dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/fireUp/#kotlin.ByteArray#kotlin.Boolean#kotlin.Boolean/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/fire-up.html
-$dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/fireUp/#kotlin.String#kotlin.Boolean#kotlin.Boolean/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/fire-up.html
+$dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/fireUp/#kotlin.ByteArray#kotlin.Boolean/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/fire-up.html
+$dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/fireUp/#kotlin.String#kotlin.Boolean/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/fire-up.html
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/formatHostForAndroid/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/format-host-for-android.html
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/getAppVersion/#com.tecknobit.ametistaengine.configuration.EngineConfiguration/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/get-app-version.html
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/host/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/host.html
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/isValidConfiguration/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/is-valid-configuration.html
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/isValidHost/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/is-valid-host.html
-$dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/ktorClient/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/ktor-client.html
-$dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/loadConfiguration/#kotlin.ByteArray/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/load-configuration.html
-$dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/loggingEnabled/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/logging-enabled.html
+$dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/loadConfiguration/#kotlin.ByteArray#kotlin.Boolean/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/load-configuration.html
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/notifyAppLaunch/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/notify-app-launch.html
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/notifyIssue/#kotlin.String/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/notify-issue.html
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/notifyIssue/#kotlin.Throwable/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/notify-issue.html
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/notifyNetworkRequest/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/notify-network-request.html
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/platform/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/platform.html
-$dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/requestsMutex/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/requests-mutex.html
-$dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/sendRequest/#io.ktor.http.HttpMethod#kotlin.String#kotlin.collections.Map[kotlin.String,kotlin.Any]#kotlinx.serialization.json.JsonObject?/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/send-request.html
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/serverSecret/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/server-secret.html
-$dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/setLogging/#kotlin.Boolean/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/set-logging.html
 $dokka.location:com.tecknobit.ametistaengine/AmetistaEngine/throwInvalidConfiguration/#/PointingToDeclaration/-ametista--engine/com.tecknobit.ametistaengine/-ametista-engine/throw-invalid-configuration.html
 com.tecknobit.ametistaengine
 com.tecknobit.ametistaengine.configuration
 com.tecknobit.ametistaengine.configuration.targets
 com.tecknobit.ametistaengine.deviceinfo
 com.tecknobit.ametistaengine.utils
-

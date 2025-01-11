@@ -7,7 +7,7 @@
 ![Static Badge](https://img.shields.io/badge/desktop-006874?link=https%3A%2F%2Fimg.shields.io%2Fbadge%2Fandroid-4280511051)
 ![Static Badge](https://img.shields.io/badge/wasmjs-834C74?link=https%3A%2F%2Fimg.shields.io%2Fbadge%2Fandroid-4280511051)
 
-**v1.0.0**
+**v1.0.1**
 
 This project, based on Java and the Spring Boot framework, is an open source self-hosted issues tracker and performance
 stats collector about Compose Multiplatform applications
@@ -17,11 +17,6 @@ Improve the quality and stability of your apps with **Ametista**!
 This repository contains the engine of **Ametista**, so if you want to customize you can fork
 it and work on it, if there are any errors, fixes to do or some idea to upgrade this project, please
 open a ticket or contact us to talk about, thanks and good use!
-
-## 🛠 Skills
-
-- Java
-- Kotlin
 
 ## Architecture
 
@@ -38,11 +33,11 @@ steps:
 - Mobile
   - <a href="https://play.google.com/store/apps/details?id=com.tecknobit.ametista">Android</a>
   - iOS -> planned
-- <a href="https://github.com/N7ghtm4r3/Ametista-Clients/releases/tag/1.0.0">Ametista desktop version</a>
+- <a href="https://github.com/N7ghtm4r3/Ametista-Clients/releases/tag/1.0.1">Ametista desktop version</a>
 
 ### Backend
 
-- <a href="https://github.com/N7ghtm4r3/Ametista/releases/tag/1.0.0">Backend service "out-of-the-box"</a>
+- <a href="https://github.com/N7ghtm4r3/Ametista/releases/tag/1.0.1">Backend service "out-of-the-box"</a>
 
 ## Core functionality
 
@@ -67,7 +62,7 @@ also of the different versions of the application
 
 ```gradle
 [versions]
-ametista-engine = "1.0.0"
+ametista-engine = "1.0.1"
 
 [libraries]
 ametista-engine = { module = "io.github.n7ghtm4r3:Ametista-Engine", version.ref = "ametista-engine" } 
@@ -99,7 +94,7 @@ Add the JitPack repository to your build file
          
     ```gradle
     dependencies {
-        implementation 'io.github.n7ghtm4r3:Ametista-Engine:1.0.0'
+        implementation 'io.github.n7ghtm4r3:Ametista-Engine:1.0.1'
     }
     ```
 
@@ -107,7 +102,7 @@ Add the JitPack repository to your build file
          
     ```gradle
     dependencies {
-        implementation("io.github.n7ghtm4r3:Ametista-Engine:1.0.0")
+        implementation("io.github.n7ghtm4r3:Ametista-Engine:1.0.1")
     }
     ```
 
@@ -129,10 +124,11 @@ configuration file:
   "host": "your_host_address",
   "server_secret": "your_server_secret",
   "application_id": "your_application_id",
+  // whether bypass the SSL certificates validation, this for example when is a self-signed the certificate USE WITH CAUTION
+  "bypass_ssl_validation": "true [default false]",
   // required if any specific versions are not specified
   "app_version": "X.Y.Z",
   // general version to use if the specific one for a target is not specified
-
   "android": {
     // not required
     "app_version": "Y.X.Z"
@@ -172,7 +168,24 @@ The first step to start the engine is intake it in each main of your application
 
 #### Android
 
-Intake the engine in your **MainActivity**
+- Set up the internet permission in your `AndroidManifest.xml`
+
+```xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- ADD THIS PERMISSION -->
+  <uses-permission android:name="android.permission.INTERNET"/>
+
+  <application>
+    ...
+  </application>
+
+</manifest>
+```
+
+- Intake the engine in your **MainActivity**
 
 ```kotlin
 class MainActivity : ComponentActivity() {
@@ -383,10 +396,6 @@ Once the platform has been connected, you can remove the method invocation for t
 If you need to inform the users about the tracking activity or performance monitoring of the Ametista-Engine you can
 use this [template](https://github.com/N7ghtm4r3/Ametista-Engine/blob/main/POLICY.md) and customize it as you need
 
-## Authors
-
-- [@N7ghtm4r3](https://www.github.com/N7ghtm4r3)
-
 ## Support
 
 If you need help using the library or encounter any problems or bugs, please contact us via the
@@ -396,10 +405,6 @@ following links:
 - Support via <a href="https://github.com/N7ghtm4r3/Ametista-Engine/issues/new">GitHub</a>
 
 Thank you for your help!
-
-## Badges
-
-[![](https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/developer?id=Tecknobit)
 
 ## Donations
 
@@ -414,4 +419,4 @@ If you want support project and developer
 If you want support project and developer
 with <a href="https://www.paypal.com/donate/?hosted_button_id=5QMN5UQH7LDT4">PayPal</a>
 
-Copyright © 2024 Tecknobit
+Copyright © 2025 Tecknobit

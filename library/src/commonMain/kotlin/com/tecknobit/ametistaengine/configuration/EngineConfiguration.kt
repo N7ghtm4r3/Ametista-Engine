@@ -11,6 +11,8 @@ import kotlinx.serialization.Serializable
  *
  * @param host The host address value of the collector server
  * @param serverSecret The server secret of the personal Ametista backend instance
+ * byPassSSLValidation - Whether bypass the SSL certificates validation, this for example when is a self-signed the
+ * certificate USE WITH CAUTION
  * @param applicationId The identifier of the application to collect its data
  * @param appVersion The current application version managed by the Engine
  * @param androidConfig The specific configuration for the Android target
@@ -25,6 +27,8 @@ data class EngineConfiguration(
     val host: String,
     @SerialName(SERVER_SECRET_KEY)
     val serverSecret: String,
+    @SerialName(BYPASS_SSL_VALIDATION_KEY)
+    val byPassSslValidation: Boolean = false,
     @SerialName(APPLICATION_IDENTIFIER_KEY)
     val applicationId: String,
     @SerialName(APP_VERSION_KEY)
@@ -36,7 +40,7 @@ data class EngineConfiguration(
     @SerialName("desktop")
     val desktopConfig: DesktopConfig? = null,
     @SerialName("web")
-    val webConfig: WebConfig? = null
+    val webConfig: WebConfig? = null,
 ) {
 
     companion object {
@@ -50,6 +54,13 @@ data class EngineConfiguration(
          * **IS_DEBUG_MODE_KEY** -> the key for the "is_debug_mode" value
          */
         const val IS_DEBUG_MODE_KEY = "is_debug_mode"
+
+        /**
+         * **bypass_ssl_validation** -> the key for the "bypass_ssl_validation" value
+         *
+         * USE WITH CAUTION
+         */
+        const val BYPASS_SSL_VALIDATION_KEY = "bypass_ssl_validation"
 
         /**
          * **APPLICATION_IDENTIFIER_KEY** -> the key for the "application_id" value

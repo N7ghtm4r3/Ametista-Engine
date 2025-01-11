@@ -19,783 +19,342 @@
         }
     }
     </script>
-    <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js"
-            async="async"></script>
-    <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
-    <link href="../../../styles/style.css" rel="Stylesheet">
-    <link href="../../../styles/main.css" rel="Stylesheet">
-    <link href="../../../styles/prism.css" rel="Stylesheet">
-    <link href="../../../styles/logo-styles.css" rel="Stylesheet">
-    <link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
-    <script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
-    <script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
-    <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
-    <script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
-    <script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
-    <script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
-    <link href="../../../images/logo-icon.svg">
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+<link href="../../../images/logo-icon.svg">
 </head>
 <body>
-<div class="root">
-    <nav class="navigation" id="navigation-wrapper">
-        <div class="navigation--inner">
-            <div class="navigation-title">
-                <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
-                <div class="library-name">
-                    <a class="library-name--link" href="../../../index.html">
-                        Ametista-Engine
-                    </a>
-                </div>
-                <div class="library-version">
-                    1.0.0
-                </div>
-            </div>
-            <div class="filter-section" id="filter-section">
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+            <a class="library-name--link" href="../../../index.html">
+                    Ametista-Engine
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+1.0.1        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
                 <button class="platform-tag platform-selector common-like" data-active=""
-                        data-filter=":library:dokkaHtml/commonMain">common
-                </button>
+                        data-filter=":library:dokkaHtml/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":library:dokkaHtml/commonMain"
+                                       data-filter=":library:dokkaHtml/commonMain"/>
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
         </div>
-        <div class="navigation-controls">
-            <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">
-                switch theme
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
             </button>
-            <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
                 API
             </div>
         </div>
     </nav>
-    <div id="container">
-        <div class="sidebar" id="leftColumn">
-            <div class="sidebar--inner" id="sideMenu"></div>
-        </div>
-        <div id="main">
-            <div class="main-content" data-page-type="classlike" id="content"
-                 pageIds="Ametista-Engine::com.tecknobit.ametistaengine.configuration/EngineConfiguration///PointingToDeclaration//1327329691">
-                <div class="breadcrumbs"><a href="../../../index.html">Ametista-Engine</a><span
-                        class="delimiter">/</span><a href="../index.html">com.tecknobit.ametistaengine.configuration</a><span
-                        class="delimiter">/</span><span class="current">EngineConfiguration</span></div>
-                <div class="cover ">
-                    <h1 class="cover"><span>Engine</span>
-                        <wbr></wbr>
-                        <span><span>Configuration</span></span></h1>
-                    <div class="platform-hinted " data-platform-hinted="data-platform-hinted">
-                        <div class="content sourceset-dependent-content" data-active=""
-                             data-togglable=":library:dokkaHtml/commonMain">
-                            <div class="symbol monospace">
-                                <div class="block">
-                                    <div class="block"><span class="token annotation builtin">@</span><span
-                                            data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span
-                                            class="token annotation builtin">Serializable</span></span></div>
-                                </div>
-                                <span class="token keyword">data </span><span class="token keyword">class </span><a
-                                    href="index.html">EngineConfiguration</a><span
-                                    class="token punctuation">(</span><span class="parameters "><span
-                                    class="parameter "><span class="token keyword">val </span>host<span
-                                    class="token operator">: </span><a
-                                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                    class="token punctuation">, </span></span><span class="parameter "><span
-                                    class="token keyword">val </span>serverSecret<span
-                                    class="token operator">: </span><a
-                                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                    class="token punctuation">, </span></span><span class="parameter "><span
-                                    class="token keyword">val </span>applicationId<span class="token operator">: </span><a
-                                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                    class="token punctuation">, </span></span><span class="parameter "><span
-                                    class="token keyword">val </span>appVersion<span class="token operator">: </span><a
-                                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                    class="token operator">?</span><span class="token operator"> = </span>null<span
-                                    class="token punctuation">, </span></span><span class="parameter "><span
-                                    class="token keyword">val </span>androidConfig<span class="token operator">: </span><a
-                                    href="../../com.tecknobit.ametistaengine.configuration.targets/-android-config/index.html">AndroidConfig</a><span
-                                    class="token operator">?</span><span class="token operator"> = </span>null<span
-                                    class="token punctuation">, </span></span><span class="parameter "><span
-                                    class="token keyword">val </span>iosConfig<span class="token operator">: </span><a
-                                    href="../../com.tecknobit.ametistaengine.configuration.targets/-ios-config/index.html">IosConfig</a><span
-                                    class="token operator">?</span><span class="token operator"> = </span>null<span
-                                    class="token punctuation">, </span></span><span class="parameter "><span
-                                    class="token keyword">val </span>desktopConfig<span class="token operator">: </span><a
-                                    href="../../com.tecknobit.ametistaengine.configuration.targets/-desktop-config/index.html">DesktopConfig</a><span
-                                    class="token operator">?</span><span class="token operator"> = </span>null<span
-                                    class="token punctuation">, </span></span><span class="parameter "><span
-                                    class="token keyword">val </span>webConfig<span class="token operator">: </span><a
-                                    href="../../com.tecknobit.ametistaengine.configuration.targets/-web-config/index.html">WebConfig</a><span
-                                    class="token operator">?</span><span
-                                    class="token operator"> = </span>null</span></span><span
-                                    class="token punctuation">)</span></div>
-                            <p class="paragraph">The <strong>EngineConfiguration</strong> class is the container of the
-                                details of the configuration to use during the Engine's session</p><span
-                                class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">N7ghtm4r3 - Tecknobit</p></span>
-                            <h4 class="">Parameters</h4>
-                            <div class="table">
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex"><div><u><span><span>host</span></span></u></div></span>
-                                        </div>
-                                        <div>
-                                            <div class="title"><p class="paragraph">The host address value of the
-                                                collector server</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex"><div><u><span>server</span><wbr></wbr><span><span>Secret</span></span></u></div></span>
-                                        </div>
-                                        <div>
-                                            <div class="title"><p class="paragraph">The server secret of the personal
-                                                Ametista backend instance</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex"><div><u><span>application</span><wbr></wbr><span><span>Id</span></span></u></div></span>
-                                        </div>
-                                        <div>
-                                            <div class="title"><p class="paragraph">The identifier of the application to
-                                                collect its data</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex"><div><u><span>app</span><wbr></wbr><span><span>Version</span></span></u></div></span>
-                                        </div>
-                                        <div>
-                                            <div class="title"><p class="paragraph">The current application version
-                                                managed by the Engine</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex"><div><u><span>android</span><wbr></wbr><span><span>Config</span></span></u></div></span>
-                                        </div>
-                                        <div>
-                                            <div class="title"><p class="paragraph">The specific configuration for the
-                                                Android target</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex"><div><u><span>ios</span><wbr></wbr><span><span>Config</span></span></u></div></span>
-                                        </div>
-                                        <div>
-                                            <div class="title"><p class="paragraph">The specific configuration for the
-                                                iOs target</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex"><div><u><span>desktop</span><wbr></wbr><span><span>Config</span></span></u></div></span>
-                                        </div>
-                                        <div>
-                                            <div class="title"><p class="paragraph">The specific configuration for the
-                                                desktop target</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex"><div><u><span>web</span><wbr></wbr><span><span>Config</span></span></u></div></span>
-                                        </div>
-                                        <div>
-                                            <div class="title"><p class="paragraph">The specific configuration for the
-                                                web target</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                        data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    Ametista-Engine
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
                         </div>
-                    </div>
-                </div>
-                <div class="tabbedcontent">
-                    <div class="tabs-section" tabs-section="tabs-section">
-                        <button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">
-                            Members
-                        </button>
-                    </div>
-                    <div class="tabs-section-body">
-                        <div data-togglable="CONSTRUCTOR">
-                            <h2 class="">Constructors</h2>
-                            <div class="table"><a data-name="1152612171%2FConstructors%2F1327329691"
-                                                  anchor-label="EngineConfiguration"
-                                                  id="1152612171%2FConstructors%2F1327329691"
-                                                  data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-togglable="CONSTRUCTOR"
-                                     data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="-engine-configuration.html"><span>Engine</span><wbr></wbr><span><span>Configuration</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1152612171%2FConstructors%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace"><span class="token keyword">constructor</span><span
-                                                                class="token punctuation">(</span><span
-                                                                class="parameters "><span class="parameter ">host<span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                                                class="token punctuation">, </span></span><span
-                                                                class="parameter ">serverSecret<span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                                                class="token punctuation">, </span></span><span
-                                                                class="parameter ">applicationId<span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                                                class="token punctuation">, </span></span><span
-                                                                class="parameter ">appVersion<span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                                                class="token operator">?</span><span
-                                                                class="token operator"> = </span>null<span
-                                                                class="token punctuation">, </span></span><span
-                                                                class="parameter ">androidConfig<span
-                                                                class="token operator">: </span><a
-                                                                href="../../com.tecknobit.ametistaengine.configuration.targets/-android-config/index.html">AndroidConfig</a><span
-                                                                class="token operator">?</span><span
-                                                                class="token operator"> = </span>null<span
-                                                                class="token punctuation">, </span></span><span
-                                                                class="parameter ">iosConfig<span
-                                                                class="token operator">: </span><a
-                                                                href="../../com.tecknobit.ametistaengine.configuration.targets/-ios-config/index.html">IosConfig</a><span
-                                                                class="token operator">?</span><span
-                                                                class="token operator"> = </span>null<span
-                                                                class="token punctuation">, </span></span><span
-                                                                class="parameter ">desktopConfig<span
-                                                                class="token operator">: </span><a
-                                                                href="../../com.tecknobit.ametistaengine.configuration.targets/-desktop-config/index.html">DesktopConfig</a><span
-                                                                class="token operator">?</span><span
-                                                                class="token operator"> = </span>null<span
-                                                                class="token punctuation">, </span></span><span
-                                                                class="parameter ">webConfig<span
-                                                                class="token operator">: </span><a
-                                                                href="../../com.tecknobit.ametistaengine.configuration.targets/-web-config/index.html">WebConfig</a><span
-                                                                class="token operator">?</span><span
-                                                                class="token operator"> = </span>null</span></span><span
-                                                                class="token punctuation">)</span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div data-togglable="TYPE">
-                            <h2 class="">Types</h2>
-                            <div class="table"><a data-name="451804810%2FClasslikes%2F1327329691"
-                                                  anchor-label="Companion" id="451804810%2FClasslikes%2F1327329691"
-                                                  data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="451804810%2FClasslikes%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace"><span
-                                                                class="token keyword">object </span><a
-                                                                href="-companion/index.html">Companion</a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a data-name="1989962623%2FClasslikes%2F1327329691"
-                                   anchor-label="PerformanceAnalyticType" id="1989962623%2FClasslikes%2F1327329691"
-                                   data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="-performance-analytic-type/index.html"><span>Performance</span><wbr></wbr><span>Analytic</span><wbr></wbr><span><span>Type</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1989962623%2FClasslikes%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace"><span
-                                                                class="token keyword">enum </span><a
-                                                                href="-performance-analytic-type/index.html">PerformanceAnalyticType</a>
-                                                            :
-                                                            <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html">Enum</a><span
-                                                                    class="token operator">&lt;</span><a
-                                                                    href="-performance-analytic-type/index.html">EngineConfiguration.PerformanceAnalyticType</a><span
-                                                                    class="token operator">&gt; </span></div>
-                                                        <div class="brief "><p class="paragraph"><strong>PerformanceAnalyticType</strong>
-                                                            -> the analytics available</p></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a data-name="-1811468647%2FClasslikes%2F1327329691" anchor-label="Platform"
-                                   id="-1811468647%2FClasslikes%2F1327329691"
-                                   data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="-platform/index.html"><span><span>Platform</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1811468647%2FClasslikes%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace"><span
-                                                                class="token keyword">enum </span><a
-                                                                href="-platform/index.html">Platform</a> : <a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html">Enum</a><span
-                                                                class="token operator">&lt;</span><a
-                                                                href="-platform/index.html">EngineConfiguration.Platform</a><span
-                                                                class="token operator">&gt; </span></div>
-                                                        <div class="brief "><p class="paragraph">
-                                                            <strong>Platform</strong> -> the platform target values</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div data-togglable="PROPERTY">
-                            <h2 class="">Properties</h2>
-                            <div class="table"><a data-name="-1061553966%2FProperties%2F1327329691"
-                                                  anchor-label="androidConfig"
-                                                  id="-1061553966%2FProperties%2F1327329691"
-                                                  data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="android-config.html"><span>android</span><wbr></wbr><span><span>Config</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1061553966%2FProperties%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace">
-                                                            <div class="block">
-                                                                <div class="block"><span
-                                                                        class="token annotation builtin">@</span><span
-                                                                        data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span
-                                                                        class="token annotation builtin">SerialName</span></span><span
-                                                                        class="token punctuation">(</span><span>value<span
-                                                                        class="token operator"> = </span><span
-                                                                        class="breakable-word"><span
-                                                                        class="token string">&quot;android&quot;</span></span></span>
-                                                                    <wbr></wbr>
-                                                                    <span class="token punctuation">)</span></div>
-                                                            </div>
-                                                            <span class="token keyword">val </span><a
-                                                                href="android-config.html">androidConfig</a><span
-                                                                class="token operator">: </span><a
-                                                                href="../../com.tecknobit.ametistaengine.configuration.targets/-android-config/index.html">AndroidConfig</a><span
-                                                                class="token operator">?</span><span
-                                                                class="token operator"> = </span>null
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a data-name="1949983256%2FProperties%2F1327329691" anchor-label="applicationId"
-                                   id="1949983256%2FProperties%2F1327329691"
-                                   data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="application-id.html"><span>application</span><wbr></wbr><span><span>Id</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1949983256%2FProperties%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace">
-                                                            <div class="block">
-                                                                <div class="block"><span
-                                                                        class="token annotation builtin">@</span><span
-                                                                        data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span
-                                                                        class="token annotation builtin">SerialName</span></span><span
-                                                                        class="token punctuation">(</span><span>value<span
-                                                                        class="token operator"> = </span><span
-                                                                        class="breakable-word"><span
-                                                                        class="token string">&quot;application_id&quot;</span></span></span>
-                                                                    <wbr></wbr>
-                                                                    <span class="token punctuation">)</span></div>
-                                                            </div>
-                                                            <span class="token keyword">val </span><a
-                                                                href="application-id.html">applicationId</a><span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a data-name="1341164384%2FProperties%2F1327329691" anchor-label="appVersion"
-                                   id="1341164384%2FProperties%2F1327329691"
-                                   data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="app-version.html"><span>app</span><wbr></wbr><span><span>Version</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1341164384%2FProperties%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace">
-                                                            <div class="block">
-                                                                <div class="block"><span
-                                                                        class="token annotation builtin">@</span><span
-                                                                        data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span
-                                                                        class="token annotation builtin">SerialName</span></span><span
-                                                                        class="token punctuation">(</span><span>value<span
-                                                                        class="token operator"> = </span><span
-                                                                        class="breakable-word"><span
-                                                                        class="token string">&quot;app_version&quot;</span></span></span>
-                                                                    <wbr></wbr>
-                                                                    <span class="token punctuation">)</span></div>
-                                                            </div>
-                                                            <span class="token keyword">val </span><a
-                                                                href="app-version.html">appVersion</a><span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span
-                                                                class="token operator">?</span><span
-                                                                class="token operator"> = </span>null
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a data-name="-1165842043%2FProperties%2F1327329691" anchor-label="desktopConfig"
-                                   id="-1165842043%2FProperties%2F1327329691"
-                                   data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="desktop-config.html"><span>desktop</span><wbr></wbr><span><span>Config</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1165842043%2FProperties%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace">
-                                                            <div class="block">
-                                                                <div class="block"><span
-                                                                        class="token annotation builtin">@</span><span
-                                                                        data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span
-                                                                        class="token annotation builtin">SerialName</span></span><span
-                                                                        class="token punctuation">(</span><span>value<span
-                                                                        class="token operator"> = </span><span
-                                                                        class="breakable-word"><span
-                                                                        class="token string">&quot;desktop&quot;</span></span></span>
-                                                                    <wbr></wbr>
-                                                                    <span class="token punctuation">)</span></div>
-                                                            </div>
-                                                            <span class="token keyword">val </span><a
-                                                                href="desktop-config.html">desktopConfig</a><span
-                                                                class="token operator">: </span><a
-                                                                href="../../com.tecknobit.ametistaengine.configuration.targets/-desktop-config/index.html">DesktopConfig</a><span
-                                                                class="token operator">?</span><span
-                                                                class="token operator"> = </span>null
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a data-name="622785999%2FProperties%2F1327329691" anchor-label="host"
-                                   id="622785999%2FProperties%2F1327329691"
-                                   data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="host.html"><span><span>host</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="622785999%2FProperties%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace"><span
-                                                                class="token keyword">val </span><a href="host.html">host</a><span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a data-name="449320564%2FProperties%2F1327329691" anchor-label="iosConfig"
-                                   id="449320564%2FProperties%2F1327329691"
-                                   data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="ios-config.html"><span>ios</span><wbr></wbr><span><span>Config</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="449320564%2FProperties%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace">
-                                                            <div class="block">
-                                                                <div class="block"><span
-                                                                        class="token annotation builtin">@</span><span
-                                                                        data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span
-                                                                        class="token annotation builtin">SerialName</span></span><span
-                                                                        class="token punctuation">(</span><span>value<span
-                                                                        class="token operator"> = </span><span
-                                                                        class="breakable-word"><span
-                                                                        class="token string">&quot;ios&quot;</span></span></span>
-                                                                    <wbr></wbr>
-                                                                    <span class="token punctuation">)</span></div>
-                                                            </div>
-                                                            <span class="token keyword">val </span><a
-                                                                href="ios-config.html">iosConfig</a><span
-                                                                class="token operator">: </span><a
-                                                                href="../../com.tecknobit.ametistaengine.configuration.targets/-ios-config/index.html">IosConfig</a><span
-                                                                class="token operator">?</span><span
-                                                                class="token operator"> = </span>null
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a data-name="-1455186940%2FProperties%2F1327329691" anchor-label="serverSecret"
-                                   id="-1455186940%2FProperties%2F1327329691"
-                                   data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="server-secret.html"><span>server</span><wbr></wbr><span><span>Secret</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1455186940%2FProperties%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace">
-                                                            <div class="block">
-                                                                <div class="block"><span
-                                                                        class="token annotation builtin">@</span><span
-                                                                        data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span
-                                                                        class="token annotation builtin">SerialName</span></span><span
-                                                                        class="token punctuation">(</span><span>value<span
-                                                                        class="token operator"> = </span><span
-                                                                        class="breakable-word"><span
-                                                                        class="token string">&quot;server_secret&quot;</span></span></span>
-                                                                    <wbr></wbr>
-                                                                    <span class="token punctuation">)</span></div>
-                                                            </div>
-                                                            <span class="token keyword">val </span><a
-                                                                href="server-secret.html">serverSecret</a><span
-                                                                class="token operator">: </span><a
-                                                                href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a data-name="2095266381%2FProperties%2F1327329691" anchor-label="webConfig"
-                                   id="2095266381%2FProperties%2F1327329691"
-                                   data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="web-config.html"><span>web</span><wbr></wbr><span><span>Config</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2095266381%2FProperties%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace">
-                                                            <div class="block">
-                                                                <div class="block"><span
-                                                                        class="token annotation builtin">@</span><span
-                                                                        data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span
-                                                                        class="token annotation builtin">SerialName</span></span><span
-                                                                        class="token punctuation">(</span><span>value<span
-                                                                        class="token operator"> = </span><span
-                                                                        class="breakable-word"><span
-                                                                        class="token string">&quot;web&quot;</span></span></span>
-                                                                    <wbr></wbr>
-                                                                    <span class="token punctuation">)</span></div>
-                                                            </div>
-                                                            <span class="token keyword">val </span><a
-                                                                href="web-config.html">webConfig</a><span
-                                                                class="token operator">: </span><a
-                                                                href="../../com.tecknobit.ametistaengine.configuration.targets/-web-config/index.html">WebConfig</a><span
-                                                                class="token operator">?</span><span
-                                                                class="token operator"> = </span>null
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div data-togglable="FUNCTION">
-                            <h2 class="">Functions</h2>
-                            <div class="table"><a data-name="835745059%2FFunctions%2F1327329691"
-                                                  anchor-label="getTargetConfiguration"
-                                                  id="835745059%2FFunctions%2F1327329691"
-                                                  data-filterable-set=":library:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain"
-                                     data-filterable-set=":library:dokkaHtml/commonMain">
-                                    <div class="main-subrow keyValue ">
-                                        <div class=""><span class="inline-flex">
-                  <div><a href="get-target-configuration.html"><span>get</span><wbr></wbr><span>Target</span><wbr></wbr><span><span>Configuration</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="835745059%2FFunctions%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span
-                            class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-                                        <div>
-                                            <div class="title">
-                                                <div class="platform-hinted "
-                                                     data-platform-hinted="data-platform-hinted">
-                                                    <div class="content sourceset-dependent-content" data-active=""
-                                                         data-togglable=":library:dokkaHtml/commonMain">
-                                                        <div class="symbol monospace"><span
-                                                                class="token keyword">fun </span><a
-                                                                href="get-target-configuration.html"><span
-                                                                class="token function">getTargetConfiguration</span></a><span
-                                                                class="token punctuation">(</span><span
-                                                                class="parameters "><span
-                                                                class="parameter ">platform<span class="token operator">: </span><a
-                                                                href="-platform/index.html">EngineConfiguration.Platform</a></span></span><span
-                                                                class="token punctuation">)</span><span
-                                                                class="token operator">: </span><a
-                                                                href="../../com.tecknobit.ametistaengine.configuration.targets/-target-config/index.html">TargetConfig</a><span
-                                                                class="token operator">?</span></div>
-                                                        <div class="brief "><p class="paragraph">Method to get the
-                                                            correct <a
-                                                                    href="../../com.tecknobit.ametistaengine.configuration.targets/-target-config/index.html">TargetConfig</a>
-                                                            for based on the <a href="get-target-configuration.html">platform</a>
-                                                        </p></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
                 </div>
             </div>
-            <div class="footer">
-                <span class="go-to-top-icon"><a href="#content"
-                                                id="go-to-top-link"></a></span><span>(c) 2024 Tecknobit</span><span
-                    class="pull-right"><span>Generated by </span><a
-                    href="https://github.com/Kotlin/dokka"><span>dokka</span><span
-                    class="padded-icon"></span></a></span>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="Ametista-Engine::com.tecknobit.ametistaengine.configuration/EngineConfiguration///PointingToDeclaration//1327329691">
+  <div class="breadcrumbs"><a href="../../../index.html">Ametista-Engine</a><span class="delimiter">/</span><a href="../index.html">com.tecknobit.ametistaengine.configuration</a><span class="delimiter">/</span><span class="current">EngineConfiguration</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Engine</span><wbr></wbr><span><span>Configuration</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">EngineConfiguration</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>host<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>serverSecret<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>byPassSslValidation<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>applicationId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>appVersion<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>androidConfig<span class="token operator">: </span><a href="../../com.tecknobit.ametistaengine.configuration.targets/-android-config/index.html">AndroidConfig</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>iosConfig<span class="token operator">: </span><a href="../../com.tecknobit.ametistaengine.configuration.targets/-ios-config/index.html">IosConfig</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>desktopConfig<span class="token operator">: </span><a href="../../com.tecknobit.ametistaengine.configuration.targets/-desktop-config/index.html">DesktopConfig</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>webConfig<span class="token operator">: </span><a href="../../com.tecknobit.ametistaengine.configuration.targets/-web-config/index.html">WebConfig</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><p class="paragraph">The <strong>EngineConfiguration</strong> class is the container of the details of the configuration to use during the Engine's session</p><span class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">N7ghtm4r3 - Tecknobit</p></span><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>host</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The host address value of the collector server</p></div></div></div></div><div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>server</span><wbr></wbr><span><span>Secret</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The server secret of the personal Ametista backend instance byPassSSLValidation - Whether bypass the SSL certificates validation, this for example when is a self-signed the certificate USE WITH CAUTION</p></div></div></div></div><div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>application</span><wbr></wbr><span><span>Id</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The identifier of the application to collect its data</p></div></div></div></div><div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>app</span><wbr></wbr><span><span>Version</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The current application version managed by the Engine</p></div></div></div></div><div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>android</span><wbr></wbr><span><span>Config</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The specific configuration for the Android target</p></div></div></div></div><div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>ios</span><wbr></wbr><span><span>Config</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The specific configuration for the iOs target</p></div></div></div></div><div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>desktop</span><wbr></wbr><span><span>Config</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The specific configuration for the desktop target</p></div></div></div></div><div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>web</span><wbr></wbr><span><span>Config</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The specific configuration for the web target</p></div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1332050181%2FConstructors%2F1327329691" anchor-label="EngineConfiguration" id="-1332050181%2FConstructors%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-engine-configuration.html"><span>Engine</span><wbr></wbr><span><span>Configuration</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1332050181%2FConstructors%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">host<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">serverSecret<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">byPassSslValidation<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter ">applicationId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">appVersion<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">androidConfig<span class="token operator">: </span><a href="../../com.tecknobit.ametistaengine.configuration.targets/-android-config/index.html">AndroidConfig</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">iosConfig<span class="token operator">: </span><a href="../../com.tecknobit.ametistaengine.configuration.targets/-ios-config/index.html">IosConfig</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">desktopConfig<span class="token operator">: </span><a href="../../com.tecknobit.ametistaengine.configuration.targets/-desktop-config/index.html">DesktopConfig</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">webConfig<span class="token operator">: </span><a href="../../com.tecknobit.ametistaengine.configuration.targets/-web-config/index.html">WebConfig</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="451804810%2FClasslikes%2F1327329691" anchor-label="Companion" id="451804810%2FClasslikes%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="451804810%2FClasslikes%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1989962623%2FClasslikes%2F1327329691" anchor-label="PerformanceAnalyticType" id="1989962623%2FClasslikes%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-performance-analytic-type/index.html"><span>Performance</span><wbr></wbr><span>Analytic</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1989962623%2FClasslikes%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-performance-analytic-type/index.html">PerformanceAnalyticType</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-performance-analytic-type/index.html">EngineConfiguration.PerformanceAnalyticType</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph"><strong>PerformanceAnalyticType</strong> -> the analytics available</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1811468647%2FClasslikes%2F1327329691" anchor-label="Platform" id="-1811468647%2FClasslikes%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-platform/index.html"><span><span>Platform</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1811468647%2FClasslikes%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-platform/index.html">Platform</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-platform/index.html">EngineConfiguration.Platform</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph"><strong>Platform</strong> -> the platform target values</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-1061553966%2FProperties%2F1327329691" anchor-label="androidConfig" id="-1061553966%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="android-config.html"><span>android</span><wbr></wbr><span><span>Config</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1061553966%2FProperties%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;android&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="android-config.html">androidConfig</a><span class="token operator">: </span><a href="../../com.tecknobit.ametistaengine.configuration.targets/-android-config/index.html">AndroidConfig</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1949983256%2FProperties%2F1327329691" anchor-label="applicationId" id="1949983256%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="application-id.html"><span>application</span><wbr></wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1949983256%2FProperties%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;application_id&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="application-id.html">applicationId</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1341164384%2FProperties%2F1327329691" anchor-label="appVersion" id="1341164384%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="app-version.html"><span>app</span><wbr></wbr><span><span>Version</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1341164384%2FProperties%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;app_version&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="app-version.html">appVersion</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1619195110%2FProperties%2F1327329691" anchor-label="byPassSslValidation" id="1619195110%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="by-pass-ssl-validation.html"><span>by</span><wbr></wbr><span>Pass</span><wbr></wbr><span>Ssl</span><wbr></wbr><span><span>Validation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1619195110%2FProperties%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;bypass_ssl_validation&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="by-pass-ssl-validation.html">byPassSslValidation</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1165842043%2FProperties%2F1327329691" anchor-label="desktopConfig" id="-1165842043%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="desktop-config.html"><span>desktop</span><wbr></wbr><span><span>Config</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1165842043%2FProperties%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;desktop&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="desktop-config.html">desktopConfig</a><span class="token operator">: </span><a href="../../com.tecknobit.ametistaengine.configuration.targets/-desktop-config/index.html">DesktopConfig</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="622785999%2FProperties%2F1327329691" anchor-label="host" id="622785999%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="host.html"><span><span>host</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="622785999%2FProperties%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="host.html">host</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="449320564%2FProperties%2F1327329691" anchor-label="iosConfig" id="449320564%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ios-config.html"><span>ios</span><wbr></wbr><span><span>Config</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="449320564%2FProperties%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;ios&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="ios-config.html">iosConfig</a><span class="token operator">: </span><a href="../../com.tecknobit.ametistaengine.configuration.targets/-ios-config/index.html">IosConfig</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1455186940%2FProperties%2F1327329691" anchor-label="serverSecret" id="-1455186940%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="server-secret.html"><span>server</span><wbr></wbr><span><span>Secret</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1455186940%2FProperties%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;server_secret&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="server-secret.html">serverSecret</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2095266381%2FProperties%2F1327329691" anchor-label="webConfig" id="2095266381%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="web-config.html"><span>web</span><wbr></wbr><span><span>Config</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2095266381%2FProperties%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;web&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="web-config.html">webConfig</a><span class="token operator">: </span><a href="../../com.tecknobit.ametistaengine.configuration.targets/-web-config/index.html">WebConfig</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="835745059%2FFunctions%2F1327329691" anchor-label="getTargetConfiguration" id="835745059%2FFunctions%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-target-configuration.html"><span>get</span><wbr></wbr><span>Target</span><wbr></wbr><span><span>Configuration</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="835745059%2FFunctions%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="get-target-configuration.html"><span class="token function">getTargetConfiguration</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">platform<span class="token operator">: </span><a href="-platform/index.html">EngineConfiguration.Platform</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.tecknobit.ametistaengine.configuration.targets/-target-config/index.html">TargetConfig</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Method to get the correct <a href="../../com.tecknobit.ametistaengine.configuration.targets/-target-config/index.html">TargetConfig</a> for based on the <a href="get-target-configuration.html">platform</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>(c) 2025 Tecknobit</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>
