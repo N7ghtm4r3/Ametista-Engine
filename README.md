@@ -273,7 +273,6 @@ fun App() {
   val ametistaEngine = AmetistaEngine.ametistaEngine
   ametistaEngine.fireUp(
     configPath = "your_configuration_file_path", // file is not located the common resources
-    loggingEnabled = false, // whether to enable the logging of the engine operations
     debugMode = false // whether the issues or the stats collected have to real counted or just simulated their sent,
     // make sure that in production is set on *false*
   )
@@ -313,7 +312,6 @@ fun App() {
     val ametistaEngine = AmetistaEngine.ametistaEngine
     ametistaEngine.fireUp(
       configData = Res.readBytes(FILES_AMETISTA_CONFIG_PATHNAME), // files/ametista.config pathname
-      loggingEnabled = false, // whether to enable the logging of the engine operations
       debugMode = false // whether the issues or the stats collected have to real counted or just simulated their sent,
       // make sure that in production is set on *false*
     )
