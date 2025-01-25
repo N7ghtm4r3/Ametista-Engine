@@ -1,11 +1,6 @@
 package com.tecknobit.ametistaengine.deviceinfo
 
-import kotlinx.browser.window
-
-/**
- * **UKNOWN** -> the uknown value to use when the specific information has not found
- */
-private const val UKNOWN = "uknown"
+import com.tecknobit.kinfo.KInfoState
 
 /**
  * Method to provide the current device information
@@ -13,29 +8,17 @@ private const val UKNOWN = "uknown"
  * @return the device information as [WebDeviceInfo]
  */
 actual fun provideDeviceInfo(): DeviceInfo {
-    val userAgent = window.navigator.userAgent
-    val result = parseUserAgent(
-        userAgent = userAgent
-    )
+    val webInfo = KInfoState().webInfo
+    val device = webInfo.device
+    val os = webInfo.os
+    val browser = webInfo.browser
     return WebDeviceInfo(
-        uniqueIdentifier = userAgent,
-        brand = result.device.vendor.safeValue(),
-        model = result.device.model.safeValue(),
-        os = result.os.name.safeValue(),
-        osVersion = result.os.version.safeValue(),
-        browser = result.browser.name.safeValue(),
-        browserVersion = result.browser.version.safeValue()
+        uniqueIdentifier = webInfo.userAgent,
+        brand = device.vendor,
+        model = device.model,
+        os = os.name,
+        osVersion = os.version,
+        browser = browser.name,
+        browserVersion = browser.version
     )
-}
-
-/**
- * Method to use a null-safe value
- *
- * @return the found value or the [UKNOWN] value as [String]
- */
-private fun String?.safeValue(): String {
-    return if (this != null)
-        this
-    else
-        UKNOWN
 }

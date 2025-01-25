@@ -17,7 +17,7 @@ plugins {
 }
 
 group = "com.tecknobit.ametistaengine"
-version = "1.0.1"
+version = "1.0.2"
 
 kotlin {
     jvm {
@@ -51,7 +51,6 @@ kotlin {
         browser {
             webpackTask {
                 dependencies {
-                    implementation(libs.x.cdn.jsdelivr.net.npm.ua.parser.js)
                 }
             }
         }
@@ -71,11 +70,11 @@ kotlin {
                 implementation(libs.napier)
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.equinox.core)
+                implementation(libs.kinfo)
             }
         }
         val jvmMain by getting {
             dependencies {
-                implementation(libs.oshi.core)
             }
         }
         val iosX64Main by getting
@@ -87,7 +86,6 @@ kotlin {
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
-                implementation(libs.kdeviceinfo)
             }
         }
         val wasmJsMain by getting {
@@ -110,7 +108,7 @@ mavenPublishing {
     coordinates(
         groupId = "io.github.n7ghtm4r3",
         artifactId = "Ametista-Engine",
-        version = "1.0.1"
+        version = "1.0.2"
     )
     pom {
         name.set("Ametista-Engine")

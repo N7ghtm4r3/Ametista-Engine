@@ -33,7 +33,7 @@ steps:
 - Mobile
   - <a href="https://play.google.com/store/apps/details?id=com.tecknobit.ametista">Android</a>
   - iOS -> planned
-- <a href="https://github.com/N7ghtm4r3/Ametista-Clients/releases/tag/1.0.1">Ametista desktop version</a>
+- <a href="https://github.com/N7ghtm4r3/Ametista-Clients/releases/tag/1.0.0">Ametista desktop version</a>
 
 ### Backend
 
@@ -62,7 +62,7 @@ also of the different versions of the application
 
 ```gradle
 [versions]
-ametista-engine = "1.0.1"
+ametista-engine = "1.0.2"
 
 [libraries]
 ametista-engine = { module = "io.github.n7ghtm4r3:Ametista-Engine", version.ref = "ametista-engine" } 
@@ -94,7 +94,7 @@ Add the JitPack repository to your build file
          
     ```gradle
     dependencies {
-        implementation 'io.github.n7ghtm4r3:Ametista-Engine:1.0.1'
+        implementation 'io.github.n7ghtm4r3:Ametista-Engine:1.0.2'
     }
     ```
 
@@ -102,7 +102,7 @@ Add the JitPack repository to your build file
          
     ```gradle
     dependencies {
-        implementation("io.github.n7ghtm4r3:Ametista-Engine:1.0.1")
+        implementation("io.github.n7ghtm4r3:Ametista-Engine:1.0.2")
     }
     ```
 

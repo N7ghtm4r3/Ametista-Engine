@@ -1,6 +1,6 @@
 package com.tecknobit.ametistaengine.deviceinfo
 
-import oshi.SystemInfo
+import com.tecknobit.kinfo.KInfoState
 
 /**
  * **TO_BE_FILLED_BY_O_E_M** -> constant "To Be Filled By O.E.M." value
@@ -18,9 +18,9 @@ private const val CUSTOM_BUILD = "Custom Build"
  * @return the device information as [DeviceInfo]
  */
 actual fun provideDeviceInfo(): DeviceInfo {
-    val info = SystemInfo()
-    val operatingSystem = info.operatingSystem
-    val computerInfo = info.hardware.computerSystem
+    val desktopInfo = KInfoState().desktopInfo
+    val operatingSystem = desktopInfo.operatingSystem
+    val computerInfo = desktopInfo.hardware.computerSystem
     val uniqueIdentifier: String = computerInfo.baseboard.serialNumber
     val brand: String = operatingSystem.manufacturer
     val guard = computerInfo.model
