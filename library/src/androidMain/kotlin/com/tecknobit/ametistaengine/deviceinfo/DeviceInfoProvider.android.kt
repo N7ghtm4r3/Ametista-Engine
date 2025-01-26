@@ -5,6 +5,7 @@ import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.*
 import com.tecknobit.apimanager.apis.APIRequest
 import com.tecknobit.apimanager.apis.APIRequest.SHA1_ALGORITHM
+import com.tecknobit.kinfo.KInfoState
 
 /**
  * **BASE** -> "BASE" Android operating system name
@@ -112,13 +113,13 @@ private const val UPSIDE_DOWN_CAKE = "Upside down cake"
  * @return the device information as [DeviceInfo]
  */
 actual fun provideDeviceInfo(): DeviceInfo {
+    val androidInfo = KInfoState().androidInfo
     val brand: String = Build.BRAND
-    val model: String = Build.MODEL
+    val model: String = androidInfo.model
     val os = osNameByVersion()
-    val osVersion: String = Build.VERSION.RELEASE
-    val uniqueIdentifier = APIRequest.base64Digest((brand + model + osVersion + SDK_INT).toByteArray(), SHA1_ALGORITHM)
+    val osVersion: String = androidInfo.version.release
     return DeviceInfo(
-        uniqueIdentifier = uniqueIdentifier,
+        uniqueIdentifier = APIRequest.base64Digest((brand + model + osVersion + SDK_INT).toByteArray(), SHA1_ALGORITHM),
         brand = brand,
         model = model,
         os = os,

@@ -143,16 +143,29 @@ class AmetistaEngine private constructor(
      * Method to initialize the Engine with the configuration data and the flags available
      *
      * @param configPath is the configuration path where the config file is located
+     * @param host The host address value of the collector server
+     * @param serverSecret The server secret of the personal Ametista backend instance
+     * @param bypassSslValidation - Whether bypass the SSL certificates validation, this for example when is a self-signed the
+     * certificate USE WITH CAUTION
+     * @param applicationId The identifier of the application to collect its data
      * @param debugMode concerns whether the Engine must send the requests but the server must not collect as real, this is the
      * use-case of a not-production environment
      */
     fun fireUp(
         configPath: String,
-        debugMode: Boolean
+        host: String,
+        serverSecret: String,
+        applicationId: String,
+        bypassSslValidation: Boolean = false,
+        debugMode: Boolean,
     ) {
         val configData = SystemFileSystem.source(Path(configPath)).buffered().readByteArray()
         fireUp(
             configData = configData,
+            host = host,
+            serverSecret = serverSecret,
+            applicationId = applicationId,
+            bypassSslValidation = bypassSslValidation,
             debugMode = debugMode
         )
     }
@@ -161,18 +174,32 @@ class AmetistaEngine private constructor(
      * Method to initialize the Engine with the configuration data and the flags available
      *
      * @param configData are the config data as [ByteArray]
+     *
+     * @param host The host address value of the collector server
+     * @param serverSecret The server secret of the personal Ametista backend instance
+     * @param bypassSslValidation - Whether bypass the SSL certificates validation, this for example when is a self-signed the
+     * certificate USE WITH CAUTION
+     * @param applicationId The identifier of the application to collect its data
      * @param debugMode concerns whether the Engine must send the requests but the server must not collect as real, this is the
      * use-case of a not-production environment
      */
     fun fireUp(
         configData: ByteArray,
-        debugMode: Boolean
+        host: String,
+        serverSecret: String,
+        applicationId: String,
+        bypassSslValidation: Boolean = false,
+        debugMode: Boolean,
     ) {
         if (initializationTimestamp < 0)
             throw IllegalArgumentException("To correctly start the engine you must invoke AmetistaEngine.intake method first")
         try {
             loadConfiguration(
                 configData = configData,
+                host = host,
+                serverSecret = serverSecret,
+                applicationId = applicationId,
+                bypassSslValidation = bypassSslValidation,
                 debugMode = debugMode
             )
             notifyAppLaunch()
@@ -186,29 +213,38 @@ class AmetistaEngine private constructor(
      * and initializing the [host], [serverSecret], [applicationId] and [appVersion] instances
      *
      * @param configData the data from instantiate the [EngineConfiguration]
+     * @param host The host address value of the collector server
+     * @param serverSecret The server secret of the personal Ametista backend instance
+     * @param bypassSslValidation - Whether bypass the SSL certificates validation, this for example when is a self-signed the
+     * certificate USE WITH CAUTION
+     * @param applicationId The identifier of the application to collect its data
      * @param debugMode concerns whether the Engine must send the requests but the server must not collect as real, this is the
      * use-case of a not-production environment
      */
     private fun loadConfiguration(
         configData: ByteArray,
+        host: String,
+        serverSecret: String,
+        applicationId: String,
+        bypassSslValidation: Boolean = false,
         debugMode: Boolean,
     ) {
         val configuration: EngineConfiguration = Json.decodeFromString(configData.decodeToString())
         appVersion = getAppVersion(
             configuration = configuration
         )
-        host = configuration.host
+        this.host = host
         if (platform == ANDROID)
             formatHostForAndroid()
-        serverSecret = configuration.serverSecret
-        applicationId = configuration.applicationId
+        this.serverSecret = serverSecret
+        this.applicationId = applicationId
         configurationLoaded = isValidConfiguration()
         if (!configurationLoaded)
             throwInvalidConfiguration()
         engineRequester = EngineRequester(
             host = "$host$ENDPOINT_URL$applicationId",
             debugMode = debugMode,
-            byPassSSLValidation = configuration.byPassSslValidation,
+            byPassSSLValidation = bypassSslValidation,
             serverSecret = serverSecret,
             appVersion = appVersion!!,
             platform = platform

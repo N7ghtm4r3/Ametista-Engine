@@ -9,11 +9,6 @@ import kotlinx.serialization.Serializable
  * The **EngineConfiguration** class is the container of the details of the configuration to use during the Engine's
  * session
  *
- * @param host The host address value of the collector server
- * @param serverSecret The server secret of the personal Ametista backend instance
- * byPassSSLValidation - Whether bypass the SSL certificates validation, this for example when is a self-signed the
- * certificate USE WITH CAUTION
- * @param applicationId The identifier of the application to collect its data
  * @param appVersion The current application version managed by the Engine
  * @param androidConfig The specific configuration for the Android target
  * @param iosConfig The specific configuration for the iOs target
@@ -24,13 +19,6 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class EngineConfiguration(
-    val host: String,
-    @SerialName(SERVER_SECRET_KEY)
-    val serverSecret: String,
-    @SerialName(BYPASS_SSL_VALIDATION_KEY)
-    val byPassSslValidation: Boolean = false,
-    @SerialName(APPLICATION_IDENTIFIER_KEY)
-    val applicationId: String,
     @SerialName(APP_VERSION_KEY)
     val appVersion: String? = null,
     @SerialName("android")
