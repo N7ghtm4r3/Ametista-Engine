@@ -7,7 +7,7 @@
 ![Static Badge](https://img.shields.io/badge/desktop-006874?link=https%3A%2F%2Fimg.shields.io%2Fbadge%2Fandroid-4280511051)
 ![Static Badge](https://img.shields.io/badge/wasmjs-834C74?link=https%3A%2F%2Fimg.shields.io%2Fbadge%2Fandroid-4280511051)
 
-**v1.0.1**
+**v1.0.2**
 
 This project, based on Java and the Spring Boot framework, is an open source self-hosted issues tracker and performance
 stats collector about Compose Multiplatform applications
@@ -114,18 +114,87 @@ Add the JitPack repository to your build file
     }
     ```
 
-### Configuration file
+### Configuration
+
+#### Sensitive data
+
+To share the sensitive configuration data with the engine and avoiding adding to the external configuration file it is
+recommended to use the [gradle-buildconfig-plugin](https://github.com/gmazzo/gradle-buildconfig-plugin) to generate at
+runtime the sensitive information to include in the binaries. This is a similar approach used on Android with the
+[BuildConfigField](https://developer.android.com/reference/tools/gradle-api/7.2/com/android/build/api/variant/BuildConfigField).
+
+- Integrate the plugin in your `build.gradle.kts` of the **composeApp** module:
+  ```gradle
+  plugins {
+    id("com.github.gmazzo.buildconfig") version "5.5.1"
+  }
+  ```
+- Add the sensitive data of the configuration in the `gradle.properties` file:
+
+> [!CAUTION]
+>
+> This file contains **sensitive information** such as server addresses, server secrets, and application-specific data.
+>
+> **To protect this data:**
+> - **Do not share** this file in any public locations, such as public repositories, forums, or websites.
+> - **Exclude** this file from version control if working in a public repository (e.g., using `.gitignore` for Git).
+> - **Limit access** to this file to authorized personnel only.
+> - **Use environment variables** or a secrets management tool instead of hardcoding sensitive data, where possible.
+
+  ```properties
+  host=your_host_address
+server_secret=your_server_secret
+application_id=your_application_id
+#whether bypass the SSL certificates validation, this for example when is a self-signed the certificate USE WITH CAUTION
+bypass_ssl_validation=true (if not specified false as default)
+  ```
+
+- Configure the **gradle task** to generate the configuration file to use during the runtime (add this task to the
+  `build.gradle.kts` file):
+  ```gradle
+  buildConfig {
+     className("AmetistaConfig") // suggested class name
+     packageName("com.your.package") // your current application package
+     buildConfigField<String>(
+        name = "HOST",
+        value = project.findProperty("host").toString()
+     )
+     buildConfigField<String?>(
+        name = "SERVER_SECRET",
+        value = project.findProperty("server_secret").toString()
+     )
+     buildConfigField<String?>(
+        name = "APPLICATION_IDENTIFIER",
+        value = project.findProperty("application_id").toString()
+     )
+     buildConfigField<Boolean>(
+        name = "BYPASS_SSL_VALIDATION",
+        value = project.findProperty("bypass_ssl_validation").toString().toBoolean()
+     )
+  }
+  ```
+- After `sync` the project and then you can access to the generated internal `AmetistaConfig` file
+
+> [!CAUTION]
+>
+> Like the gradle.properties file, also this file contains **sensitive information** such as server addresses, server
+> secrets, and application-specific data.
+>
+> **To protect this data:**
+> - **Do not share** this file in any public locations, such as public repositories, forums, or websites.
+> - **Exclude** this file from version control if working in a public repository (e.g., using `.gitignore` for Git).
+> - **Limit access** to this file to authorized personnel only.
+> - **Use environment variables** or a secrets management tool instead of hardcoding sensitive data, where possible.
+
+- The final step is share those file with the engine, you can see later at the [fire-up](#engines-fire-up) procedure
+
+#### Non-sensitive data
 
 To send the issues and the performance analytics to your backend you have to create the related **"ametista.config"**
 configuration file:
 
 ```json
 {
-  "host": "your_host_address",
-  "server_secret": "your_server_secret",
-  "application_id": "your_application_id",
-  // whether bypass the SSL certificates validation, this for example when is a self-signed the certificate USE WITH CAUTION
-  "bypass_ssl_validation": "true [default false]",
   // required if any specific versions are not specified
   "app_version": "X.Y.Z",
   // general version to use if the specific one for a target is not specified
@@ -151,16 +220,6 @@ configuration file:
   }
 }
 ```
-
-> [!CAUTION]
->
-> This file contains **sensitive information** such as server addresses, server secrets, and application-specific data.
->
-> **To protect this data:**
-> - **Do not share** this file in any public locations, such as public repositories, forums, or websites.
-> - **Exclude** this file from version control if working in a public repository (e.g., using `.gitignore` for Git).
-> - **Limit access** to this file to authorized personnel only.
-> - **Use environment variables** or a secrets management tool instead of hardcoding sensitive data, where possible.
 
 ### Intake the engine
 
@@ -270,12 +329,18 @@ the dedicated method:
 
 ```kotlin
 fun App() {
+  // The AmetistaConfig is the file generated by the gradle plugin
   val ametistaEngine = AmetistaEngine.ametistaEngine
   ametistaEngine.fireUp(
     configPath = "your_configuration_file_path", // file is not located the common resources
-    debugMode = false // whether the issues or the stats collected have to real counted or just simulated their sent,
+    host = AmetistaConfig.HOST, // the host address of the collector server
+    serverSecret = AmetistaConfig.SERVER_SECRET!!, // the server secret to validate the requests
+    applicationId = AmetistaConfig.APPLICATION_IDENTIFIER!!, // the identifier of the application which the engine is collecting stats
+    bypassSslValidation = AmetistaConfig.BYPASS_SSL_VALIDATION, // not required, use it whether bypass the SSL certificates validation, this for example when is a self-signed the certificate USE WITH CAUTION
+    debugMode = false // whether the issues or the stats collected have to real counted or just simulated their sent, 
     // make sure that in production is set on *false*
   )
+
   MaterialTheme {
     Column(
       modifier = Modifier
