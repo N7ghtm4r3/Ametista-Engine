@@ -142,6 +142,7 @@ runtime the sensitive information to include in the binaries. This is a similar 
 > - **Use environment variables** or a secrets management tool instead of hardcoding sensitive data, where possible.
 
   ```properties
+#Ametista
   host=your_host_address
 server_secret=your_server_secret
 application_id=your_application_id
