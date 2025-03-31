@@ -7,7 +7,7 @@
 ![Static Badge](https://img.shields.io/badge/desktop-006874?link=https%3A%2F%2Fimg.shields.io%2Fbadge%2Fandroid-4280511051)
 ![Static Badge](https://img.shields.io/badge/wasmjs-834C74?link=https%3A%2F%2Fimg.shields.io%2Fbadge%2Fandroid-4280511051)
 
-**v1.0.2**
+**v1.0.3**
 
 This project, based on Java and the Spring Boot framework, is an open source self-hosted issues tracker and performance
 stats collector about Compose Multiplatform applications
@@ -66,7 +66,7 @@ also of the different versions of the application
 
 ```gradle
 [versions]
-ametista-engine = "1.0.2"
+ametista-engine = "1.0.3"
 
 [libraries]
 ametista-engine = { module = "io.github.n7ghtm4r3:Ametista-Engine", version.ref = "ametista-engine" } 
@@ -98,7 +98,7 @@ Add the JitPack repository to your build file
          
     ```gradle
     dependencies {
-        implementation 'io.github.n7ghtm4r3:Ametista-Engine:1.0.2'
+        implementation 'io.github.n7ghtm4r3:Ametista-Engine:1.0.3'
     }
     ```
 
@@ -106,7 +106,7 @@ Add the JitPack repository to your build file
          
     ```gradle
     dependencies {
-        implementation("io.github.n7ghtm4r3:Ametista-Engine:1.0.2")
+        implementation("io.github.n7ghtm4r3:Ametista-Engine:1.0.3")
     }
     ```
 

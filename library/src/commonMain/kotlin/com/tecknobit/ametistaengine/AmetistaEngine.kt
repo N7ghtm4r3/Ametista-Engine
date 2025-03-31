@@ -56,21 +56,6 @@ class AmetistaEngine private constructor(
         private const val LOCALHOST_ADDRESS_VALUE = "127.0.0.1"
 
         /**
-         * **RESPONSE_KEY** -> the response key
-         */
-        private const val RESPONSE_KEY = "response"
-
-        /**
-         * **STATUS_KEY** -> the status key
-         */
-        private const val STATUS_KEY = "status"
-
-        /**
-         * **REQUEST_FAILED** -> the failed response status
-         */
-        private const val REQUEST_FAILED = "FAILED"
-
-        /**
          * **initializationTimestamp** -> the current timestamp when the engine has been initialized invoking
          * the [intake] method
          */

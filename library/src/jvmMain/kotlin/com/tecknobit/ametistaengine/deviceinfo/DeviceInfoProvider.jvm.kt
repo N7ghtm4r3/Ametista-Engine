@@ -5,6 +5,7 @@ import com.tecknobit.kinfo.KInfoState
 /**
  * **TO_BE_FILLED_BY_O_E_M** -> constant "To Be Filled By O.E.M." value
  */
+//TODO: TO USE THE BUILT-IN CONSTANT FROM KInfo
 private const val TO_BE_FILLED_BY_O_E_M = "To Be Filled By O.E.M."
 
 /**

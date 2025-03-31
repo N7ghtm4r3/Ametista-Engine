@@ -18,12 +18,11 @@ plugins {
 }
 
 group = "com.tecknobit.ametistaengine"
-version = "1.0.2"
+version = "1.0.3"
 
 kotlin {
     jvm {
         compilations.all {
-            @OptIn(ExperimentalKotlinGradlePluginApi::class)
             this@jvm.compilerOptions {
                 jvmTarget.set(JvmTarget.JVM_18)
             }
@@ -31,7 +30,6 @@ kotlin {
     }
     androidTarget {
         publishLibraryVariants("release")
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_18)
         }
@@ -109,12 +107,12 @@ mavenPublishing {
     coordinates(
         groupId = "io.github.n7ghtm4r3",
         artifactId = "Ametista-Engine",
-        version = "1.0.2"
+        version = "1.0.3"
     )
     pom {
         name.set("Ametista-Engine")
         description.set("Self-hosted issues tracker and performance stats collector about Compose Multiplatform applications")
-        inceptionYear.set("2024")
+        inceptionYear.set("2025")
         url.set("https://github.com/N7ghtm4r3/Ametista-Engine")
 
         licenses {
