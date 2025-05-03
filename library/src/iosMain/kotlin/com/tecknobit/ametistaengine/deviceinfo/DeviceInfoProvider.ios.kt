@@ -3,7 +3,7 @@ package com.tecknobit.ametistaengine.deviceinfo
 import com.tecknobit.kinfo.KInfoState
 
 /**
- * **APPLE_BRAND** -> constant "apple" value
+ * `APPLE_BRAND` constant "apple" value
  */
 private const val APPLE_BRAND = "Apple"
 

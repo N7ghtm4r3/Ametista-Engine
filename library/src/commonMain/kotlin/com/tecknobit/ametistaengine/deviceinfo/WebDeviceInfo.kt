@@ -39,12 +39,12 @@ class WebDeviceInfo(
     companion object {
 
         /**
-         * **BROWSER_KEY** -> the key for the "browser" value
+         * `BROWSER_KEY` the key for the "browser" value
          */
         private const val BROWSER_KEY = "browser"
 
         /**
-         * **BROWSER_VERSION_KEY** -> the key for the "browser_version" value
+         * `BROWSER_VERSION_KEY` the key for the "browser_version" value
          */
         private const val BROWSER_VERSION_KEY = "browser_version"
 

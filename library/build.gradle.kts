@@ -1,3 +1,4 @@
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
 
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinMultiplatform
@@ -18,7 +19,7 @@ plugins {
 }
 
 group = "com.tecknobit.ametistaengine"
-version = "1.0.3"
+version = "1.0.4"
 
 kotlin {
     jvm {
@@ -107,7 +108,7 @@ mavenPublishing {
     coordinates(
         groupId = "io.github.n7ghtm4r3",
         artifactId = "Ametista-Engine",
-        version = "1.0.3"
+        version = "1.0.4"
     )
     pom {
         name.set("Ametista-Engine")

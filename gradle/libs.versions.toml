@@ -2,17 +2,17 @@
 agp = "8.2.2"
 apiManager = "2.2.4"
 dokka = "2.0.0"
-equinox = "1.0.9"
-kinfo = "1.0.1"
+equinox = "1.1.1"
+kinfo = "1.0.2"
 kotlin = "2.1.20"
 android-minSdk = "24"
 android-compileSdk = "34"
 kotlinxBrowser = "0.3"
-kotlinxDatetime = "0.6.1"
-kotlinxIoCore = "0.5.4"
-kotlinxSerializationJson = "1.8.0"
+kotlinxDatetime = "0.6.2"
+kotlinxIoCore = "0.7.0"
+kotlinxSerializationJson = "1.8.1"
 napier = "2.7.1"
-coroutines = "1.10.1"
+coroutines = "1.10.2"
 
 [libraries]
 dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }

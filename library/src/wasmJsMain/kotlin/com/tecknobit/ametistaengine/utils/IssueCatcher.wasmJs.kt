@@ -5,7 +5,7 @@ import com.tecknobit.ametistaengine.configuration.EngineConfiguration.Companion.
 import kotlinx.browser.window
 
 /**
- * **UNCAUGHT_PROMISE_EXCEPTION_TYPE** -> constant "unhandledrejection" value
+ * `UNCAUGHT_PROMISE_EXCEPTION_TYPE` constant "unhandledrejection" value
  */
 private const val UNCAUGHT_PROMISE_EXCEPTION_TYPE = "unhandledrejection"
 
