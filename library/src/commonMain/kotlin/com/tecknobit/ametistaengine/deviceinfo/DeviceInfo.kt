@@ -29,32 +29,32 @@ open class DeviceInfo(
     companion object {
 
         /**
-         * **DEVICE_KEY** -> the key for the "device" value
+         * `DEVICE_KEY` the key for the "device" value
          */
         const val DEVICE_KEY = "device"
 
         /**
-         * **DEVICE_IDENTIFIER_KEY** -> the key for the "device_id" value
+         * `DEVICE_IDENTIFIER_KEY` the key for the "device_id" value
          */
         private const val DEVICE_IDENTIFIER_KEY = "device_id"
 
         /**
-         * **BRAND_KEY** -> the key for the "brand" value
+         * `BRAND_KEY` the key for the "brand" value
          */
         private const val BRAND_KEY = "brand"
 
         /**
-         * **MODEL_KEY** -> the key for the "model" value
+         * `MODEL_KEY` the key for the "model" value
          */
         private const val MODEL_KEY = "model"
 
         /**
-         * **OS_KEY** -> the key for the "os" value
+         * `OS_KEY` the key for the "os" value
          */
         private const val OS_KEY = "os"
 
         /**
-         * **OS_VERSION_KEY** -> the key for the "os_version" value
+         * `OS_VERSION_KEY` the key for the "os_version" value
          */
         private const val OS_VERSION_KEY = "os_version"
 

@@ -35,34 +35,34 @@ class AmetistaEngine private constructor(
     companion object {
 
         /**
-         * **FILES_AMETISTA_CONFIG_PATHNAME** -> the pathname of the configuration file located in the common resources
+         * `FILES_AMETISTA_CONFIG_PATHNAME` the pathname of the configuration file located in the common resources
          * folder
          */
         const val FILES_AMETISTA_CONFIG_PATHNAME = "files/ametista.config"
 
         /**
-         * **ANDROID_LOCALHOST_VALUE** -> the value of the localhost for the **Android** emulators
+         * `ANDROID_LOCALHOST_VALUE` the value of the localhost for the **Android** emulators
          */
         private const val ANDROID_LOCALHOST_VALUE = "10.0.2.2"
 
         /**
-         * **LOCALHOST_VALUE** -> the "localhost" value
+         * `LOCALHOST_VALUE` the "localhost" value
          */
         private const val LOCALHOST_VALUE = "localhost"
 
         /**
-         * **LOCALHOST_ADDRESS_VALUE** -> the "127.0.0.1" address value
+         * `LOCALHOST_ADDRESS_VALUE` the "127.0.0.1" address value
          */
         private const val LOCALHOST_ADDRESS_VALUE = "127.0.0.1"
 
         /**
-         * **initializationTimestamp** -> the current timestamp when the engine has been initialized invoking
+         * `initializationTimestamp` the current timestamp when the engine has been initialized invoking
          * the [intake] method
          */
         private var initializationTimestamp: Long = -1
 
         /**
-         * **ametistaEngine** -> the singleton instance of the engine to use in the clients application, will be
+         * `ametistaEngine` the singleton instance of the engine to use in the clients application, will be
          * returned the specific instance for each target platform
          */
         val ametistaEngine: AmetistaEngine by lazy {
@@ -83,44 +83,44 @@ class AmetistaEngine private constructor(
     }
 
     /**
-     * **deviceInfo** -> the current device information
+     * `deviceInfo` the current device information
      */
     private val deviceInfo: DeviceInfo = provideDeviceInfo()
 
     /**
-     * **engineRequester** -> the requester used to send the statistics to the backend
+     * `engineRequester` the requester used to send the statistics to the backend
      */
     private lateinit var engineRequester: EngineRequester
 
     /**
-     * **configurationMutex** -> the mutex used to wait the configuration loaded before execute any operation
+     * `configurationMutex` the mutex used to wait the configuration loaded before execute any operation
      */
     private val configurationMutex = Mutex(
         locked = true
     )
 
     /**
-     * **host** -> the host address where send the stats and performance data collected
+     * `host` the host address where send the stats and performance data collected
      */
     private lateinit var host: String
 
     /**
-     * **serverSecret** -> the server secret value used as authentication method to validate the requests of the Engine
+     * `serverSecret` the server secret value used as authentication method to validate the requests of the Engine
      */
     private lateinit var serverSecret: String
 
     /**
-     * **applicationId** -> the identifier of the current application managed by the Engine
+     * `applicationId` the identifier of the current application managed by the Engine
      */
     private lateinit var applicationId: String
 
     /**
-     * **appVersion** -> the current application version managed by the Engine
+     * `appVersion` the current application version managed by the Engine
      */
     private var appVersion: String? = null
 
     /**
-     * **configurationLoaded** -> whether the configuration has been loaded correctly
+     * `configurationLoaded` whether the configuration has been loaded correctly
      */
     private var configurationLoaded: Boolean = false
 
